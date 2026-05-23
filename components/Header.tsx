@@ -2,30 +2,49 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLanguage } from '@/lib/LanguageContext';
 import { t, tr } from '@/lib/translations';
 
 const WHATSAPP_URL = 'https://wa.me/541165115261';
 
-function BetterFlowLogo({ white = false }: { white?: boolean }) {
-  const textColor = white ? '#ffffff' : '#1e3a5f';
-  const accentColor = white ? '#93c5fd' : '#2b6cb0';
+export function BetterFlowLogo({ size = 38 }: { size?: number }) {
   return (
     <div className="flex items-center gap-2">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="16" cy="16" r="15" fill={white ? 'rgba(255,255,255,0.15)' : '#1e3a5f'} stroke={accentColor} strokeWidth="1.5" />
-        <path d="M8 16 Q12 10 16 16 Q20 22 24 16" stroke={white ? '#ffffff' : '#60a5fa'} strokeWidth="2" fill="none" strokeLinecap="round" />
-        <path d="M8 20 Q12 14 16 20 Q20 26 24 20" stroke={accentColor} strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.7" />
-        <path d="M8 12 Q12 6 16 12 Q20 18 24 12" stroke={white ? 'rgba(255,255,255,0.5)' : '#bfdbfe'} strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.5" />
-      </svg>
-      <span style={{ color: textColor }} className="font-bold text-xl tracking-tight">
-        Better<span style={{ color: accentColor }}>Flow</span>
+      <Image
+        src="/logo.jpeg"
+        alt="BetterFlowIA"
+        width={size}
+        height={size}
+        className="rounded-full"
+        style={{ objectFit: 'cover' }}
+        priority
+      />
+      <span style={{
+        fontFamily: "'Barlow Condensed', sans-serif",
+        fontWeight: 900,
+        fontSize: 20,
+        letterSpacing: '-0.5px',
+        color: '#eef4ff',
+        textTransform: 'uppercase' as const,
+        lineHeight: 1,
+      }}>
+        BetterFlow
+        <sup style={{
+          fontSize: 8,
+          fontWeight: 600,
+          letterSpacing: '1.5px',
+          color: '#00e5a0',
+          verticalAlign: 'super',
+          fontFamily: 'Barlow, sans-serif',
+          textTransform: 'none' as const,
+        }}>
+          IA
+        </sup>
       </span>
     </div>
   );
 }
-
-export { BetterFlowLogo };
 
 export default function Header() {
   const { lang, setLang } = useLanguage();
@@ -48,21 +67,24 @@ export default function Header() {
 
   return (
     <header
-      className="sticky top-0 z-50 w-full transition-shadow duration-300"
+      className="sticky top-0 z-50 w-full transition-all duration-300"
       style={{
-        backgroundColor: '#1e3a5f',
-        boxShadow: scrolled ? '0 2px 20px rgba(0,0,0,0.25)' : 'none',
+        backgroundColor: scrolled ? 'rgba(6,11,24,0.96)' : '#060b18',
+        backdropFilter: scrolled ? 'blur(16px)' : 'none',
+        borderBottom: '1px solid rgba(0,229,160,0.1)',
+        boxShadow: scrolled ? '0 4px 32px rgba(0,0,0,0.5)' : 'none',
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
+
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <BetterFlowLogo white />
+            <BetterFlowLogo />
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) =>
               link.external ? (
                 <a
@@ -70,7 +92,10 @@ export default function Header() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-blue-100 hover:text-white transition-colors"
+                  className="text-sm transition-colors"
+                  style={{ color: 'rgba(238,244,255,0.45)' }}
+                  onMouseEnter={e => (e.currentTarget.style.color = '#eef4ff')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(238,244,255,0.45)')}
                 >
                   {link.label}
                 </a>
@@ -78,7 +103,10 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm text-blue-100 hover:text-white transition-colors"
+                  className="text-sm transition-colors"
+                  style={{ color: 'rgba(238,244,255,0.45)' }}
+                  onMouseEnter={e => (e.currentTarget.style.color = '#eef4ff')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(238,244,255,0.45)')}
                 >
                   {link.label}
                 </Link>
@@ -86,36 +114,50 @@ export default function Header() {
             )}
           </nav>
 
-          {/* Right side */}
+          {/* Right side: lang toggle + CTA */}
           <div className="hidden md:flex items-center gap-3">
-            {/* Language toggle */}
-            <div className="flex items-center rounded-full overflow-hidden border border-blue-400">
-              <button
-                onClick={() => setLang('es')}
-                className={`px-3 py-1 text-xs font-medium transition-colors ${
-                  lang === 'es' ? 'bg-white text-[#1e3a5f]' : 'text-blue-100 hover:text-white'
-                }`}
-              >
-                ES
-              </button>
-              <button
-                onClick={() => setLang('en')}
-                className={`px-3 py-1 text-xs font-medium transition-colors ${
-                  lang === 'en' ? 'bg-white text-[#1e3a5f]' : 'text-blue-100 hover:text-white'
-                }`}
-              >
-                EN
-              </button>
+            <div
+              className="flex items-center rounded overflow-hidden"
+              style={{ border: '1px solid rgba(0,229,160,0.25)' }}
+            >
+              {(['es', 'en'] as const).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLang(l)}
+                  className="px-3 py-1 text-xs uppercase transition-colors"
+                  style={{
+                    backgroundColor: lang === l ? '#00e5a0' : 'transparent',
+                    color: lang === l ? '#060b18' : 'rgba(238,244,255,0.45)',
+                    fontFamily: 'Barlow, sans-serif',
+                    fontWeight: 700,
+                    letterSpacing: '0.08em',
+                  }}
+                >
+                  {l}
+                </button>
+              ))}
             </div>
-            {/* CTA */}
+
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 rounded-full text-sm font-semibold transition-colors"
-              style={{ backgroundColor: '#2b6cb0', color: '#ffffff' }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#2c5282')}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#2b6cb0')}
+              className="px-5 py-2 text-sm rounded transition-all"
+              style={{
+                backgroundColor: '#00e5a0',
+                color: '#060b18',
+                fontFamily: 'Barlow, sans-serif',
+                fontWeight: 800,
+                boxShadow: '0 0 20px rgba(0,229,160,0.25)',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.boxShadow = '0 6px 28px rgba(0,229,160,0.45)';
+                e.currentTarget.style.transform = 'translateY(-1px)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.boxShadow = '0 0 20px rgba(0,229,160,0.25)';
+                e.currentTarget.style.transform = '';
+              }}
             >
               {tr(t.nav.cta, lang)}
             </a>
@@ -123,24 +165,27 @@ export default function Header() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden text-white p-2"
+            className="md:hidden p-2"
+            style={{ color: '#eef4ff' }}
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Menu"
+            aria-label="Menú"
           >
             <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              {mobileOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
+              {mobileOpen
+                ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              }
             </svg>
           </button>
         </div>
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="md:hidden pb-4 border-t border-blue-700 mt-2 pt-4">
-            <nav className="flex flex-col gap-3">
+          <div
+            className="md:hidden pb-5 pt-3"
+            style={{ borderTop: '1px solid rgba(0,229,160,0.08)' }}
+          >
+            <nav className="flex flex-col gap-4 mb-4">
               {navLinks.map((link) =>
                 link.external ? (
                   <a
@@ -148,7 +193,8 @@ export default function Header() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-blue-100 hover:text-white"
+                    className="text-sm"
+                    style={{ color: 'rgba(238,244,255,0.6)' }}
                     onClick={() => setMobileOpen(false)}
                   >
                     {link.label}
@@ -157,7 +203,8 @@ export default function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-sm text-blue-100 hover:text-white"
+                    className="text-sm"
+                    style={{ color: 'rgba(238,244,255,0.6)' }}
                     onClick={() => setMobileOpen(false)}
                   >
                     {link.label}
@@ -165,31 +212,32 @@ export default function Header() {
                 )
               )}
             </nav>
-            <div className="flex items-center gap-3 mt-4">
-              <div className="flex items-center rounded-full overflow-hidden border border-blue-400">
-                <button
-                  onClick={() => setLang('es')}
-                  className={`px-3 py-1 text-xs font-medium ${
-                    lang === 'es' ? 'bg-white text-[#1e3a5f]' : 'text-blue-100'
-                  }`}
-                >
-                  ES
-                </button>
-                <button
-                  onClick={() => setLang('en')}
-                  className={`px-3 py-1 text-xs font-medium ${
-                    lang === 'en' ? 'bg-white text-[#1e3a5f]' : 'text-blue-100'
-                  }`}
-                >
-                  EN
-                </button>
+            <div className="flex items-center gap-3">
+              <div
+                className="flex rounded overflow-hidden"
+                style={{ border: '1px solid rgba(0,229,160,0.25)' }}
+              >
+                {(['es', 'en'] as const).map((l) => (
+                  <button
+                    key={l}
+                    onClick={() => setLang(l)}
+                    className="px-3 py-1 text-xs uppercase"
+                    style={{
+                      backgroundColor: lang === l ? '#00e5a0' : 'transparent',
+                      color: lang === l ? '#060b18' : 'rgba(238,244,255,0.45)',
+                      fontWeight: 700,
+                    }}
+                  >
+                    {l}
+                  </button>
+                ))}
               </div>
               <a
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 rounded-full text-sm font-semibold"
-                style={{ backgroundColor: '#2b6cb0', color: '#ffffff' }}
+                className="px-5 py-2 text-sm rounded"
+                style={{ backgroundColor: '#00e5a0', color: '#060b18', fontWeight: 800 }}
               >
                 {tr(t.nav.cta, lang)}
               </a>

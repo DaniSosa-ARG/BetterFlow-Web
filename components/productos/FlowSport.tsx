@@ -5,14 +5,6 @@ import { t, tr } from '@/lib/translations';
 
 const WHATSAPP_FLOWSPORT = 'https://wa.me/541165115261?text=Hola,%20quiero%20saber%20mas%20sobre%20FlowSport';
 
-function CheckIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#dd6b20" strokeWidth="2.5">
-      <polyline points="20 6 9 17 4 12" />
-    </svg>
-  );
-}
-
 export default function FlowSport() {
   const { lang } = useLanguage();
 
@@ -24,57 +16,82 @@ export default function FlowSport() {
   ];
 
   return (
-    <section id="flowsport" className="py-20" style={{ backgroundColor: '#1e3a5f' }}>
+    <section id="flowsport" className="py-20" style={{ background: '#0a1020' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left: features */}
-          <div
-            className="rounded-2xl p-8 order-2 lg:order-1"
-            style={{ backgroundColor: 'rgba(255,255,255,0.08)', border: '2px solid rgba(221,107,32,0.5)' }}
-          >
-            <ul className="flex flex-col gap-5">
+
+          {/* Left: feature list */}
+          <div className="relative rounded-2xl p-8 overflow-hidden order-2 lg:order-1"
+            style={{ background: 'linear-gradient(160deg,#060e0a 0%,#091410 50%,#0c1a14 100%)', border: '1px solid rgba(0,229,160,0.2)' }}>
+            {/* Enso deco */}
+            <svg className="absolute pointer-events-none" style={{ right: -40, bottom: -40, width: 200, height: 200, opacity: 0.05 }} viewBox="0 0 200 200" fill="none">
+              <circle cx="100" cy="100" r="80" stroke="#00e5a0" strokeWidth="14" strokeDasharray="400 100" strokeLinecap="round" transform="rotate(90 100 100)" />
+            </svg>
+            <div className="flex flex-col gap-4 relative">
               {features.map((feat, i) => (
-                <li key={i} className="flex items-start gap-4">
-                  <div
-                    className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
-                    style={{ backgroundColor: 'rgba(221,107,32,0.2)' }}
-                  >
-                    <CheckIcon />
+                <div key={i} className="flex items-start gap-3.5">
+                  <div className="w-6 h-6 rounded flex items-center justify-center flex-shrink-0 mt-0.5"
+                    style={{ background: 'rgba(0,229,160,0.1)', border: '1px solid rgba(0,229,160,0.22)' }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00e5a0" strokeWidth="3">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
                   </div>
-                  <span className="text-base font-medium text-white">
+                  <span className="text-sm leading-relaxed" style={{ color: 'rgba(238,244,255,0.8)', fontWeight: 400 }}>
                     {feat}
+                    {feat.includes('Mercado Pago') && (
+                      <span className="ml-2 text-xs px-1.5 py-0.5 rounded"
+                        style={{ background: 'rgba(0,229,160,0.1)', color: '#00e5a0', border: '1px solid rgba(0,229,160,0.2)' }}>
+                        Pronto
+                      </span>
+                    )}
                   </span>
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
 
           {/* Right: text */}
           <div className="order-1 lg:order-2">
-            <span
-              className="inline-block text-sm font-bold px-4 py-1.5 rounded-full text-white mb-6"
-              style={{ backgroundColor: '#dd6b20' }}
-            >
-              {tr(t.flowsport.badge, lang)}
+            <span className="inline-flex items-center gap-1.5 text-xs font-700 uppercase tracking-widest px-3 py-1.5 rounded mb-6"
+              style={{ background: 'rgba(0,229,160,0.08)', color: '#00e5a0', border: '1px solid rgba(0,229,160,0.22)', fontWeight: 700 }}>
+              ⚽ {tr(t.flowsport.badge, lang)}
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight text-white">
-              {tr(t.flowsport.titulo, lang)}
+
+            <h2 className="mb-5 leading-none" style={{
+              fontFamily: "'Barlow Condensed',sans-serif",
+              fontWeight: 900, fontSize: 'clamp(32px,4vw,48px)',
+              textTransform: 'uppercase', letterSpacing: '-1px', color: '#eef4ff',
+            }}>
+              FlowSport
             </h2>
-            <p
-              className="text-base font-semibold mb-8 px-4 py-3 rounded-xl"
-              style={{ backgroundColor: 'rgba(221,107,32,0.15)', color: '#fed7aa', border: '1px solid rgba(221,107,32,0.3)' }}
-            >
-              {tr(t.flowsport.precio, lang)}
+            <p className="text-base leading-relaxed mb-7" style={{ color: 'rgba(238,244,255,0.65)', fontWeight: 300 }}>
+              {tr(t.flowsport.titulo, lang).replace('FlowSport — ', '')}
             </p>
-            <a
-              href={WHATSAPP_FLOWSPORT}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-8 py-4 rounded-full font-bold text-white text-base transition-all duration-200 hover:opacity-90 hover:shadow-lg hover:-translate-y-0.5"
-              style={{ backgroundColor: '#dd6b20' }}
-            >
-              {tr(t.flowsport.cta, lang)}
-            </a>
+
+            {/* Price pill */}
+            <div className="inline-flex items-center gap-2 px-5 py-3 rounded-lg mb-8"
+              style={{ background: 'rgba(0,229,160,0.06)', border: '1px solid rgba(0,229,160,0.2)' }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00e5a0" strokeWidth="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span className="text-sm font-600" style={{ color: '#00e5a0', fontWeight: 600 }}>
+                {tr(t.flowsport.precio, lang)}
+              </span>
+            </div>
+
+            <div>
+              <a href={WHATSAPP_FLOWSPORT} target="_blank" rel="noopener noreferrer"
+                className="inline-block px-8 py-3.5 rounded text-sm font-800 transition-all"
+                style={{
+                  background: '#00e5a0', color: '#060b18', fontWeight: 800,
+                  boxShadow: '0 6px 24px rgba(0,229,160,0.35)',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 12px 32px rgba(0,229,160,0.45)'; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 6px 24px rgba(0,229,160,0.35)'; }}
+              >
+                {tr(t.flowsport.cta, lang)} →
+              </a>
+            </div>
           </div>
         </div>
       </div>

@@ -15,7 +15,18 @@
       "Bash(npm install:*)",
       "Bash(cmd /c \"where vercel\")",
       "Bash(cmd /c \"npm root -g\")",
-      "Bash(cmd /c \"npm bin -g\")"
+      "Bash(cmd /c \"npm bin -g\")",
+      "Bash(.venv/Scripts/pip install:*)",
+      "Bash(.venv/Scripts/pytest tests/test_patients.py -v)",
+      "Bash(.venv/Scripts/pip.exe install:*)",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(.venv/Scripts/python.exe -m pip install pytest pytest-mock)",
+      "Bash(.venv/Scripts/python.exe -m pytest tests/test_patients.py -v)",
+      "Bash(.venv/Scripts/python.exe -c \"import os; os.environ['ANTHROPIC_API_KEY']='test'; from tools.patients import get_patient_info; print\\('OK'\\)\")",
+      "Bash(.venv/Scripts/python.exe -m pytest tests/test_patients.py -v --timeout=10 --no-header)",
+      "Bash(.venv/Scripts/python.exe -m pytest tests/test_patients.py -v --no-header)",
+      "Bash(.venv/Scripts/python.exe -m pytest tests/ -v --no-header)",
+      "Bash(.venv/Scripts/python.exe -m pytest tests/test_notifications.py tests/test_agent_behavior.py tests/test_hardcoded_references.py -v --tb=short)"
     ]
   }
 }

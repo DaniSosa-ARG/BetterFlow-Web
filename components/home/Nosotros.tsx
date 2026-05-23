@@ -3,84 +3,63 @@
 import { useLanguage } from '@/lib/LanguageContext';
 import { t, tr } from '@/lib/translations';
 
-const points = [
-  {
-    key: 'punto1' as const,
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2b6cb0" strokeWidth="2">
-        <circle cx="12" cy="12" r="10" />
-        <polyline points="12 6 12 12 16 14" />
-      </svg>
-    ),
-  },
-  {
-    key: 'punto2' as const,
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2b6cb0" strokeWidth="2">
-        <path d="M9 11l3 3L22 4" />
-        <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
-      </svg>
-    ),
-  },
-  {
-    key: 'punto3' as const,
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2b6cb0" strokeWidth="2">
-        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-      </svg>
-    ),
-  },
-  {
-    key: 'punto4' as const,
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2b6cb0" strokeWidth="2">
-        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
-      </svg>
-    ),
-  },
+const metrics = [
+  { label: 'Tareas manuales', val: '−70%', pct: 70, color: '#f87171', grad: 'linear-gradient(90deg,#1a3a5c,#f87171)' },
+  { label: 'Turnos perdidos', val: '−85%', pct: 85, color: '#00e5a0', grad: 'linear-gradient(90deg,#0f3a2a,#00e5a0)' },
+  { label: 'Respuesta a clientes', val: '24/7', pct: 100, color: '#00c4ff', grad: 'linear-gradient(90deg,#0f2a3a,#00c4ff)' },
+  { label: 'Satisfacción del equipo', val: '+90%', pct: 90, color: '#00e5a0', grad: 'linear-gradient(90deg,#0f3a2a,#00e5a0)' },
 ];
+
+const puntos = ['punto1', 'punto2', 'punto3', 'punto4'] as const;
 
 export default function Nosotros() {
   const { lang } = useLanguage();
 
   return (
-    <section id="nosotros" className="py-20 bg-white">
+    <section id="nosotros" className="py-20" style={{ background: '#0a1020' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#1e3a5f' }}>
-            {tr(t.nosotros.titulo, lang)}
-          </h2>
-          <div className="w-16 h-1 rounded-full mx-auto" style={{ backgroundColor: '#2b6cb0' }} />
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-12">
-          {points.map((p) => (
-            <div
-              key={p.key}
-              className="flex items-center gap-4 p-5 rounded-xl"
-              style={{ backgroundColor: '#f7fafc', border: '1px solid #e2e8f0' }}
-            >
-              <div
-                className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
-                style={{ backgroundColor: '#eff6ff' }}
-              >
-                {p.icon}
-              </div>
-              <span className="font-semibold" style={{ color: '#1e3a5f' }}>
-                {tr(t.nosotros[p.key], lang)}
-              </span>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          {/* Left */}
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-5 h-px" style={{ background: '#00e5a0' }} />
+              <span className="text-xs font-700 uppercase tracking-widest" style={{ color: '#00e5a0', fontWeight: 700, letterSpacing: '0.15em' }}>¿Por qué elegirnos?</span>
             </div>
-          ))}
-        </div>
+            <h2 className="mb-5" style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: 'clamp(32px,4vw,44px)', textTransform: 'uppercase', letterSpacing: '-1px', color: '#eef4ff', lineHeight: 1 }}>
+              {tr(t.nosotros.titulo, lang)}
+            </h2>
+            <p className="text-sm leading-relaxed mb-7" style={{ color: 'rgba(238,244,255,0.7)', fontWeight: 300 }}>
+              {tr(t.nosotros.parrafo, lang)}
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {puntos.map((p) => (
+                <div key={p} className="flex items-center gap-2.5 px-4 py-3 rounded-lg"
+                  style={{ background: 'rgba(0,229,160,0.05)', border: '1px solid rgba(0,229,160,0.1)' }}>
+                  <span style={{ color: '#00e5a0', fontSize: 14, flexShrink: 0 }}>✓</span>
+                  <span className="text-sm" style={{ color: 'rgba(238,244,255,0.8)', fontWeight: 400 }}>{tr(t.nosotros[p], lang)}</span>
+                </div>
+              ))}
+            </div>
+          </div>
 
-        <p
-          className="text-center text-base md:text-lg leading-relaxed max-w-2xl mx-auto"
-          style={{ color: '#4a5568' }}
-        >
-          {tr(t.nosotros.parrafo, lang)}
-        </p>
+          {/* Right — metrics panel */}
+          <div className="rounded-2xl p-7" style={{ background: '#060b18', border: '1px solid rgba(0,229,160,0.1)' }}>
+            <div className="text-xs uppercase tracking-widest mb-5" style={{ color: 'rgba(238,244,255,0.35)', letterSpacing: '0.15em' }}>
+              Impacto típico en clientes
+            </div>
+            <div className="flex flex-col gap-5">
+              {metrics.map((m) => (
+                <div key={m.label} className="flex items-center gap-3">
+                  <div className="text-xs w-36 flex-shrink-0" style={{ color: 'rgba(238,244,255,0.4)' }}>{m.label}</div>
+                  <div className="flex-1 h-0.5 rounded-full overflow-hidden" style={{ background: 'rgba(238,244,255,0.06)' }}>
+                    <div className="h-full rounded-full" style={{ width: `${m.pct}%`, background: m.grad }} />
+                  </div>
+                  <div className="text-xs font-700 w-10 text-right" style={{ color: m.color, fontWeight: 700 }}>{m.val}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

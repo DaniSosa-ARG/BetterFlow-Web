@@ -5,14 +5,6 @@ import { t, tr } from '@/lib/translations';
 
 const WHATSAPP_FLOWMED = 'https://wa.me/541165115261?text=Hola,%20quiero%20saber%20mas%20sobre%20FlowMed';
 
-function CheckIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38a169" strokeWidth="2.5">
-      <polyline points="20 6 9 17 4 12" />
-    </svg>
-  );
-}
-
 export default function FlowMed() {
   const { lang } = useLanguage();
 
@@ -24,57 +16,77 @@ export default function FlowMed() {
   ];
 
   return (
-    <section id="flowmed" className="py-20 bg-white">
+    <section id="flowmed" className="py-20" style={{ background: '#060b18' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
           {/* Left: text */}
           <div>
-            <span
-              className="inline-block text-sm font-bold px-4 py-1.5 rounded-full text-white mb-6"
-              style={{ backgroundColor: '#38a169' }}
-            >
-              {tr(t.flowmed.badge, lang)}
+            <span className="inline-flex items-center gap-1.5 text-xs font-700 uppercase tracking-widest px-3 py-1.5 rounded mb-6"
+              style={{ background: 'rgba(0,196,255,0.1)', color: '#67e8f9', border: '1px solid rgba(0,196,255,0.25)', fontWeight: 700 }}>
+              ⚕ {tr(t.flowmed.badge, lang)}
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight" style={{ color: '#1e3a5f' }}>
-              {tr(t.flowmed.titulo, lang)}
+
+            <h2 className="mb-5 leading-none" style={{
+              fontFamily: "'Barlow Condensed',sans-serif",
+              fontWeight: 900, fontSize: 'clamp(32px,4vw,48px)',
+              textTransform: 'uppercase', letterSpacing: '-1px', color: '#eef4ff',
+            }}>
+              FlowMed
             </h2>
-            <p
-              className="text-base font-semibold mb-8 px-4 py-3 rounded-xl"
-              style={{ backgroundColor: '#f0fff4', color: '#276749', border: '1px solid #c6f6d5' }}
-            >
-              {tr(t.flowmed.precio, lang)}
+            <p className="text-base leading-relaxed mb-7" style={{ color: 'rgba(238,244,255,0.65)', fontWeight: 300 }}>
+              {tr(t.flowmed.titulo, lang).replace('FlowMed — ', '')}
             </p>
-            <a
-              href={WHATSAPP_FLOWMED}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-8 py-4 rounded-full font-bold text-white text-base transition-all duration-200 hover:opacity-90 hover:shadow-lg hover:-translate-y-0.5"
-              style={{ backgroundColor: '#38a169' }}
-            >
-              {tr(t.flowmed.cta, lang)}
-            </a>
+
+            {/* Price pill */}
+            <div className="inline-flex items-center gap-2 px-5 py-3 rounded-lg mb-8"
+              style={{ background: 'rgba(0,196,255,0.06)', border: '1px solid rgba(0,196,255,0.2)' }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#67e8f9" strokeWidth="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span className="text-sm font-600" style={{ color: '#67e8f9', fontWeight: 600 }}>
+                {tr(t.flowmed.precio, lang)}
+              </span>
+            </div>
+
+            <div>
+              <a href={WHATSAPP_FLOWMED} target="_blank" rel="noopener noreferrer"
+                className="inline-block px-8 py-3.5 rounded text-sm font-800 transition-all"
+                style={{
+                  background: 'linear-gradient(135deg,#0ea5e9,#67e8f9)',
+                  color: '#060b18', fontWeight: 800,
+                  boxShadow: '0 6px 24px rgba(14,165,233,0.35)',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 12px 32px rgba(14,165,233,0.45)'; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 6px 24px rgba(14,165,233,0.35)'; }}
+              >
+                {tr(t.flowmed.cta, lang)} →
+              </a>
+            </div>
           </div>
 
-          {/* Right: features */}
-          <div
-            className="rounded-2xl p-8"
-            style={{ backgroundColor: '#f0fff4', border: '2px solid #c6f6d5' }}
-          >
-            <ul className="flex flex-col gap-5">
+          {/* Right: feature list */}
+          <div className="relative rounded-2xl p-8 overflow-hidden"
+            style={{ background: 'linear-gradient(160deg,#080f1e 0%,#0b1528 50%,#0f1d3a 100%)', border: '1px solid rgba(0,196,255,0.18)' }}>
+            {/* Enso deco */}
+            <svg className="absolute pointer-events-none" style={{ right: -40, bottom: -40, width: 200, height: 200, opacity: 0.05 }} viewBox="0 0 200 200" fill="none">
+              <circle cx="100" cy="100" r="80" stroke="#00c4ff" strokeWidth="14" strokeDasharray="400 100" strokeLinecap="round" />
+            </svg>
+            <div className="flex flex-col gap-4 relative">
               {features.map((feat, i) => (
-                <li key={i} className="flex items-start gap-4">
-                  <div
-                    className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
-                    style={{ backgroundColor: '#c6f6d5' }}
-                  >
-                    <CheckIcon />
+                <div key={i} className="flex items-start gap-3.5">
+                  <div className="w-6 h-6 rounded flex items-center justify-center flex-shrink-0 mt-0.5"
+                    style={{ background: 'rgba(0,196,255,0.12)', border: '1px solid rgba(0,196,255,0.25)' }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#67e8f9" strokeWidth="3">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
                   </div>
-                  <span className="text-base font-medium" style={{ color: '#1e3a5f' }}>
+                  <span className="text-sm leading-relaxed" style={{ color: 'rgba(238,244,255,0.8)', fontWeight: 400 }}>
                     {feat}
                   </span>
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       </div>
