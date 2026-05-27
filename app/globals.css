@@ -41,10 +41,16 @@ body {
 .fade-in-up { animation: fadeInUp 0.6s ease forwards; }
 
 @keyframes ping-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(37,99,235,.5); }
+  50%       { opacity: .7; box-shadow: 0 0 0 5px rgba(37,99,235,0); }
+}
+.ping-dot { animation: ping-dot 2s infinite; }
+
+@keyframes ping-dot-green {
   0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0,229,160,.6); }
   50%       { opacity: .7; box-shadow: 0 0 0 5px rgba(0,229,160,0); }
 }
-.ping-dot { animation: ping-dot 2s infinite; }
+.ping-dot-green { animation: ping-dot-green 2s infinite; }
 
 @keyframes td {
   0%, 60%, 100% { transform: translateY(0); }
