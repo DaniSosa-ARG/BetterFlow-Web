@@ -1,6 +1,7 @@
 # BetterFlowIA — Project Handoff
 > Documento de contexto para nuevas sesiones de Claude u otros proyectos.  
-> Generado: Mayo 2026 | Versión de diseño: v3 (Dark Navy + Electric Green)
+> Generado: Mayo 2026 | Versión de diseño: v3 (Dark Navy + Electric Green)  
+> Última actualización: Mayo 2026 — /productos rediseñado, fuentes migradas a next/font, deploy en Vercel
 
 ---
 
@@ -36,6 +37,7 @@ Consultoría en optimización de procesos e inteligencia artificial para empresa
 - **Precio:** Starter $25 USD/mes · Pro $50 USD/mes · Business $100 USD/mes
 - Sin costo de setup · Primer mes gratis
 - Ruta: `/productos#flowmed`
+- WA link: `https://wa.me/541165115261?text=Hola,%20quiero%20saber%20mas%20sobre%20FlowMed`
 
 ### FlowSport
 - Agente WhatsApp para complejos deportivos
@@ -46,6 +48,14 @@ Consultoría en optimización de procesos e inteligencia artificial para empresa
 - **Precio:** Starter $40 USD/mes · Pro / Business escalable
 - Sin costo de setup · Primer mes gratis
 - Ruta: `/productos#flowsport`
+- WA link: `https://wa.me/541165115261?text=Hola,%20quiero%20saber%20mas%20sobre%20FlowSport`
+
+### Planes de precios (ambos productos)
+| Plan | Precio | Incluye |
+|---|---|---|
+| Starter | $25 USD/mes | 1 médico o 2 canchas, agente WA ilimitado, panel web, soporte email |
+| Pro | $50 USD/mes | Hasta 5 médicos o canchas, recordatorios automáticos, métricas, soporte prioritario |
+| Business | $100 USD/mes | Ilimitado, onboarding personalizado, soporte WhatsApp |
 
 ---
 
@@ -56,8 +66,11 @@ Framework:     Next.js 16.2.3 (App Router)
 UI Library:    React 19.2.4
 Styling:       Tailwind CSS v4 + inline styles (design tokens via CSS vars)
 Language:      TypeScript 5
+Fuentes:       next/font/google — Barlow + Barlow Condensed (self-hosted en Vercel)
 Linting:       ESLint 9 + eslint-config-next
 Package mgr:   npm
+Deploy:        Vercel (auto-deploy en push a main)
+SO desarrollo: Windows
 ```
 
 ### Dependencias clave
@@ -71,6 +84,8 @@ Package mgr:   npm
 
 > ⚠️ **Tailwind v4** — usa `@import "tailwindcss"` en globals.css, NO `@tailwind base/components/utilities`. La API cambió respecto a v3.
 
+> ⚠️ **Windows** — usar `type` en lugar de `cat` en PowerShell. Git desde PowerShell o VS Code Source Control.
+
 ---
 
 ## 4. Estructura del proyecto
@@ -78,36 +93,36 @@ Package mgr:   npm
 ```
 betterflow-web/
 ├── app/
-│   ├── globals.css          ← Design tokens, fuentes, animaciones globales
-│   ├── layout.tsx           ← Metadata OG/Twitter, Header, Footer, WhatsApp
+│   ├── globals.css          ← Design tokens CSS vars, animaciones globales (SIN @import Google Fonts)
+│   ├── layout.tsx           ← next/font Barlow, Metadata OG/Twitter completos
 │   ├── page.tsx             ← Home: Hero + ComoTrabajamos + Servicios + Productos + Nosotros + CTA
 │   └── productos/
-│       └── page.tsx         ← Página de productos
+│       └── page.tsx         ← Página de productos (no tocar — solo importa componentes)
 ├── components/
-│   ├── Header.tsx           ← Nav sticky, logo real, toggle ES/EN, CTA
-│   ├── Footer.tsx           ← Logo + links + copyright
-│   ├── WhatsAppButton.tsx   ← FAB fijo esquina inferior derecha
-│   └── home/
-│       ├── Hero.tsx             ← H1 condensado, badge, CTAs, stats bar 4 cols
-│       ├── ComoTrabajamos.tsx   ← 3 pasos con borde izquierdo eléctrico
-│       ├── Servicios.tsx        ← 3 cards con hover bar animada
-│       ├── ProductosDestacados.tsx ← 2 product cards con enso deco
-│       ├── Nosotros.tsx         ← 2 cols: puntos + panel métricas
-│       └── CTAFinal.tsx         ← CTA centrado con glow + enso fondo
+│   ├── Header.tsx           ← Nav sticky blur-on-scroll, logo real, toggle ES/EN, CTA eléctrico
+│   ├── Footer.tsx           ← Logo imagen + links + copyright
+│   ├── WhatsAppButton.tsx   ← FAB fixed, tooltip hover, verde WA #25D366
+│   ├── home/
+│   │   ├── Hero.tsx             ← H1 3 líneas (solid/stroke/gradient), stats bar 4 cols
+│   │   ├── ComoTrabajamos.tsx   ← 3 pasos, borde izquierdo eléctrico, grid gap:1px
+│   │   ├── Servicios.tsx        ← 3 cards, hover bottom bar scaleX, badge "Nuevo"
+│   │   ├── ProductosDestacados.tsx ← 2 product cards (cyan/electric), enso SVG deco
+│   │   ├── Nosotros.tsx         ← 2 cols: puntos + panel métricas con barras CSS
+│   │   └── CTAFinal.tsx         ← CTA centrado, glow radial + enso SVG fondo
 │   └── productos/
-│       ├── HeroProductos.tsx
-│       ├── Problema.tsx
-│       ├── FlowMed.tsx
-│       ├── FlowSport.tsx
-│       ├── ComoFunciona.tsx
-│       ├── Precios.tsx
-│       └── CTAFinalProductos.tsx
+│       ├── HeroProductos.tsx    ← 2 cols: texto + mockup WhatsApp dark, pills anchor
+│       ├── Problema.tsx         ← 3 cards, acento rojo #f87171
+│       ├── FlowMed.tsx          ← acento cyan #00c4ff/#67e8f9
+│       ├── FlowSport.tsx        ← acento eléctrico #00e5a0, layout espejado
+│       ├── ComoFunciona.tsx     ← 3 pasos circulares con badge número, línea conectora
+│       ├── Precios.tsx          ← 3 planes, Pro escalado con borde eléctrico
+│       └── CTAFinalProductos.tsx ← CTA con botón WA verde #25D366
 ├── lib/
 │   ├── translations.ts      ← Todas las cadenas ES/EN como objeto tipado
 │   └── LanguageContext.tsx  ← Context + hook useLanguage() → { lang, setLang }
 └── public/
-    ├── logo.jpeg            ← Logo original 1024×1024px (circular en UI)
-    └── og-image.jpg         ← Social preview 1200×630px (generada con Pillow)
+    ├── logo.jpeg            ← Logo original 1024×1024px (circular en UI, 38px nav / 32px footer)
+    └── og-image.jpg         ← Social preview 1200×630px (generada con Python/Pillow)
 ```
 
 ---
@@ -132,34 +147,49 @@ betterflow-web/
 --w10:    rgba(238,244,255,0.08)  /* borders sutiles */
 ```
 
-### Tipografía
+### Colores de acento por producto/sección
 ```
-Títulos:    Barlow Condensed — weight 900, UPPERCASE, letter-spacing -1px
-Cuerpo:     Barlow — weight 300 (texto) / 700-800 (labels) / 900 (CTAs)
-Import:     Google Fonts en globals.css
+FlowMed:     #00c4ff / #67e8f9  (cyan)
+FlowSport:   #00e5a0            (electric green)
+Problema:    #f87171            (rojo — dolor del cliente)
+WhatsApp:    #25D366            (verde WA — único color fuera del sistema)
 ```
 
+### Tipografía
+```
+Títulos:    Barlow Condensed 900, UPPERCASE, letter-spacing -1px
+            CSS var: var(--font-barlow-condensed)
+Cuerpo:     Barlow 300 (texto largo) / 600-700 (labels) / 800-900 (CTAs)
+            CSS var: var(--font-barlow)
+Carga:      next/font/google → self-hosted en Vercel, sin request externo
+```
+
+> ⚠️ **No usar** `@import url('https://fonts.googleapis.com/...')` en globals.css — las fuentes están manejadas por `next/font` en `layout.tsx`. Agregar fuentes nuevas siempre desde layout.tsx.
+
 ### Patrones visuales recurrentes
-- **Enso SVG** (símbolo del logo): aparece como decoración de fondo translúcida en hero, product cards y CTA final. Opacidad 0.04–0.06
-- **Grid lines**: `background-image` con líneas cada 56px en color eléctrico opacity 0.03 — solo en el hero
-- **Section tag**: línea de 20px + texto uppercase tracking-widest en `#00e5a0`
-- **Stats bar**: grid de 4 cols con `gap: 1px` sobre fondo eléctrico — crea separadores sutiles
-- **Hover bottom bar**: `scaleX(0 → 1)` en gradient eléctrico, solo en service cards
-- **Radial glows**: `radial-gradient` para simular iluminación ambiental
+- **Enso SVG**: símbolo circular del logo como decoración translúcida (opacity 0.04–0.06) en hero, product cards y CTAs finales
+- **Grid lines**: `background-image` con líneas cada 56px en eléctrico opacity 0.03 — solo en heroes
+- **Section tag**: `<div w-5 h-px electric> + <span uppercase tracking-widest electric>` — patrón consistente en todas las secciones
+- **Stats/steps grid**: `gap: 1px` sobre fondo eléctrico — crea separadores sin borders explícitos
+- **Hover bottom bar**: `scaleX(0→1)` con `transform-origin: left` en gradient eléctrico
+- **Radial glows**: `radial-gradient` para iluminación ambiental, siempre `pointer-events: none`
 
 ### Jerarquía de botones
 ```
 Primario:   bg #00e5a0, color #060b18, font-weight 800, box-shadow eléctrico
+            hover: translateY(-2px) + box-shadow más intenso
 Secundario: border rgba(white,0.18), color white, bg transparent
-Nav CTA:    igual al primario pero más pequeño
+            hover: borderColor más opaco + bg rgba(white,0.04)
+Nav CTA:    igual al primario, padding menor
+WA CTA:     bg #25D366 (solo CTAFinalProductos y WhatsAppButton)
 ```
 
-### Animaciones CSS (definidas en globals.css)
+### Animaciones CSS (globals.css)
 ```
-ping-dot    → pulso del badge "en línea"
-td-1/2/3    → typing dots del mockup WhatsApp
-bubbleIn    → entrada de burbujas de chat
-fadeInUp    → animación de entrada genérica
+ping-dot    → pulso del indicador "en línea" del badge hero
+td-1/2/3    → typing dots del mockup WhatsApp (delay escalonado)
+bubbleIn    → entrada de burbujas de chat (scale + translateY)
+fadeInUp    → animación genérica de entrada
 ```
 
 ---
@@ -180,15 +210,17 @@ const texto = tr(t.seccion.clave, lang); // retorna string ES o EN
 ```typescript
 // Estructura de translations.ts
 export const t = {
-  hero: {
-    headline: { es: '...', en: '...' }
-  }
+  hero: { headline: { es: '...', en: '...' } },
+  // secciones: nav, hero, comoTrabajamos, servicios, productosDestacados,
+  //            nosotros, ctaFinal, heroProductos, problema, flowmed,
+  //            flowsport, comoFunciona, precios, ctaFinalProductos,
+  //            footer, whatsapp
 }
 export type Lang = 'es' | 'en';
 export function tr(key: { es: string; en: string }, lang: Lang): string
 ```
 
-**Agregar nueva clave:** añadir el objeto `{ es: '...', en: '...' }` en `translations.ts` y usar `tr(t.seccion.nuevaClave, lang)` en el componente.
+**Agregar nueva clave:** añadir `{ es: '...', en: '...' }` en `translations.ts` y usar `tr(t.seccion.nuevaClave, lang)` en el componente.
 
 ---
 
@@ -196,104 +228,155 @@ export function tr(key: { es: string; en: string }, lang: Lang): string
 
 ### Archivos
 - `public/logo.jpeg` — 1024×1024, favicon y og:image cuadrada
-- `public/og-image.jpg` — 1200×630, generada con Python/Pillow, contiene: logo circular + wordmark + tagline + 3 value props + URL
+- `public/og-image.jpg` — 1200×630, generada con Python/Pillow: fondo #060b18, grid lines, logo circular izquierda, wordmark + tagline + 3 value props + URL
 
 ### Metadatos en layout.tsx
 ```typescript
 metadataBase: new URL("https://betterflowia.com")
 
 openGraph:
-  - images[0]: /og-image.jpg (1200×630) — LinkedIn, Facebook, WhatsApp, Telegram
-  - images[1]: /logo.jpeg (1024×1024)   — fallback cuadrado
+  images[0]: /og-image.jpg (1200×630) — LinkedIn, Facebook, WhatsApp, Telegram
+  images[1]: /logo.jpeg (1024×1024)   — fallback cuadrado
 
 twitter:
   card: "summary_large_image"
   images: ["/og-image.jpg"]
-  site: "@betterflowia"
+  site: "@betterflowia"   ← verificar handle real
 
 icons:
   icon: "/logo.jpeg"
   apple: "/logo.jpeg"
 ```
 
-> Para regenerar og-image.jpg: usar Python + Pillow, canvas 1200×630, fondo #060b18, logo circular izquierda, texto Barlow derecha.
+> Para regenerar og-image.jpg: `pip install Pillow`, canvas 1200×630, fondo `#060b18`, logo circular izquierda con ring eléctrico, tipografía DejaVu Bold (fallback de Barlow).
 
 ---
 
-## 8. Componentes — notas de implementación
+## 8. Deploy — Vercel
 
-### Header.tsx
-- Sticky top-0, z-50
-- Cambia de transparente a blur oscuro al hacer scroll (umbral: 10px)
-- Logo: `<Image src="/logo.jpeg" width={38} height={38} className="rounded-full" />`
-- Toggle de idioma: botones ES/EN con fondo eléctrico al activo
-- CTA a WhatsApp en nueva pestaña
-- Mobile: hamburger con menú desplegable
+- **Trigger**: push a `main` → Vercel detecta automáticamente y despliega
+- **Fuentes**: `next/font/google` las descarga en build time y las hostea en la CDN de Vercel — sin requests externos en runtime
+- **Variables de entorno**: ninguna requerida actualmente
+- **Comandos en Vercel**: build `next build`, output `next start` (defaults de Next.js)
 
-### Hero.tsx
-- Fondo: grid lines + radial glows + enso SVG decorativo derecha
-- H1 en 3 líneas: sólido / text-stroke / gradient
-- Stats bar integrada al pie del hero (no sección separada)
+### Flujo de deploy desde Windows
+```powershell
+git add .
+git commit -m "descripción del cambio"
+git push origin main
+# Vercel despliega en ~1-2 minutos
+# Verificar en dashboard.vercel.com o en betterflowia.com
+```
 
-### ProductosDestacados.tsx
-- FlowMed: acento `#00c4ff` (cyan)
-- FlowSport: acento `#00e5a0` (verde eléctrico)
-- Enso SVG decorativo en esquina inferior derecha de cada card
+### Verificar antes de cada push
+```powershell
+# TypeScript sin errores
+npx tsc --noEmit
 
-### Nosotros.tsx
-- Layout 2 columnas en desktop, apilado en mobile
-- Panel derecho: métricas con barras de progreso animadas (CSS width %)
-- Gradientes de barras: rojo para reducción, eléctrico para mejoras
+# Ver archivos cambiados
+git status
 
-### WhatsAppButton.tsx
-- FAB fixed bottom-6 right-6
-- Tooltip aparece en hover (opacity + translateX transition)
-- Color: verde WhatsApp `#25D366` (excepcional — es el único componente fuera del sistema de color del sitio)
-
----
-
-## 9. Convenciones de código
-
-- **Estilos**: preferencia por `style={{ }}` inline sobre clases Tailwind para valores del design system. Tailwind se usa para utilidades de layout (flex, grid, padding, etc.)
-- **Hover**: implementado con `onMouseEnter`/`onMouseLeave` en elementos `<a>` y `<div>` — no con clases Tailwind hover: (incompatibilidad con inline styles)
-- **Imágenes**: siempre `next/image` con `width`, `height` y `alt` explícitos
-- **Links internos**: `next/link`; externos: `<a target="_blank" rel="noopener noreferrer">`
-- **'use client'**: todos los componentes que usan `useLanguage()` o state lo requieren
-
----
-
-## 10. Historial de diseño
-
-| Versión | Descripción |
-|---|---|
-| **v1 — Original** | Azul corporativo `#1e3a5f` → `#2b6cb0`, fondo blanco, Inter, CTAs redondeados. Funcional pero genérico. |
-| **v2 — Dark Electric** | Fondo negro `#0a0a0f`, acentos `#00e5a0`, tipografía Syne. Alta diferenciación pero sin identidad de marca. |
-| **v3 — Blue + Electric (actual)** | Navy profundo `#060b18` + verde eléctrico `#00e5a0`. Barlow Condensed. Enso del logo integrado como motivo gráfico. Mejor coherencia marca + tech. |
-| **v3-Blue** | Variante all-navy con Barlow, sin verde eléctrico. Descartada — menos diferenciación. |
-
----
-
-## 11. Pendientes / Roadmap
-
-- [ ] Rediseño de `/productos` con el nuevo sistema visual
-- [ ] Integración Mercado Pago en FlowSport
-- [ ] Página de blog/casos de éxito
-- [ ] Animaciones de entrada con Intersection Observer (fade-in-up al hacer scroll)
-- [ ] og:image dinámica por ruta (Next.js ImageResponse / `opengraph-image.tsx`)
-- [ ] Google Analytics / Plausible
-- [ ] Formulario de contacto propio (hoy todo va a WhatsApp)
-- [ ] Verificar handle real de Twitter/X y actualizar `twitter.site` en layout.tsx
-
----
-
-## 12. Comandos útiles
-
-```bash
-npm run dev      # desarrollo local → http://localhost:3000
-npm run build    # build de producción
-npx tsc --noEmit # validar TypeScript sin compilar
+# Ver contenido de un archivo (Windows)
+type .gitignore
 ```
 
 ---
 
-*Este documento fue generado con Claude (Anthropic) en Mayo 2026 a partir del código fuente del repositorio `betterflow-web`.*
+## 9. Componentes — notas de implementación
+
+### Header.tsx
+- Sticky top-0, z-50
+- Scroll threshold 10px → `rgba(6,11,24,0.96)` + `backdrop-filter: blur(16px)`
+- Logo: `<Image src="/logo.jpeg" width={38} height={38} className="rounded-full" priority />`
+- Toggle ES/EN: fondo `#00e5a0` / color `#060b18` en activo
+- Mobile: hamburger SVG, menú desplegable con `borderTop` eléctrico
+
+### Hero.tsx (home)
+- Grid lines + radial glows + enso SVG decorativo (right: -80px)
+- H1 tres líneas: `color: #eef4ff` / `WebkitTextStroke` / `WebkitBackgroundClip gradient`
+- Stats bar: grid 4 cols con `gap: 1px` y `background: rgba(0,229,160,0.07)`
+
+### HeroProductos.tsx
+- Layout 2 cols: texto izquierda + mockup WhatsApp dark derecha
+- Mockup: fondo `#0a1020`, header gradient dark green, burbujas usuario en `rgba(0,229,160)`, bot en navy
+- Pills anchor a `#flowmed` y `#flowsport`
+
+### FlowMed.tsx / FlowSport.tsx
+- Layouts espejados: FlowMed texto izquierda / FlowSport texto derecha
+- FlowMed: cyan `#67e8f9`, gradient botón `#0ea5e9→#67e8f9`
+- FlowSport: eléctrico `#00e5a0`, badge "Pronto" inline en feature Mercado Pago
+- Enso SVG decorativo `right: -40, bottom: -40`, opacity 0.05
+
+### Precios.tsx
+- Plan Pro: `scale(1.03)` + borde eléctrico + badge `#00e5a0`
+- Checkmarks: eléctrico en Pro, `rgba(white,0.35)` en Starter/Business
+- Precio en Barlow Condensed 900, fontSize 40
+
+### Nosotros.tsx
+- Panel métricas: barras CSS `width: X%`, gradientes de color
+- Rojo `#f87171` para métricas de reducción (tareas manuales, turnos perdidos)
+- Eléctrico `#00e5a0` para mejoras (respuesta, satisfacción)
+
+### WhatsAppButton.tsx + CTAFinalProductos.tsx
+- Únicos componentes con verde WhatsApp `#25D366` — excepción intencional del sistema de color
+
+---
+
+## 10. Convenciones de código
+
+- **Estilos**: `style={{ }}` inline para valores del design system; Tailwind solo para layout (flex, grid, padding, gap, overflow)
+- **Hover**: `onMouseEnter`/`onMouseLeave` en `<a>` y `<div>` — NO clases Tailwind `hover:` (incompatible con inline styles)
+- **Imágenes**: siempre `next/image` con `width`, `height`, `alt` y `priority` en above-the-fold
+- **Links internos**: `next/link`; externos: `<a target="_blank" rel="noopener noreferrer">`
+- **'use client'**: obligatorio en todo componente que use `useLanguage()`, `useState` o `useEffect`
+- **Fuentes en JSX**: `fontFamily: "'Barlow Condensed', sans-serif"` con comillas internas escapadas
+
+---
+
+## 11. Historial de diseño
+
+| Versión | Descripción |
+|---|---|
+| **v1 — Original** | Azul corporativo `#1e3a5f`→`#2b6cb0`, fondo blanco, Inter, CTAs redondeados. Funcional pero genérico. |
+| **v2 — Dark Electric** | Fondo negro `#0a0a0f`, acentos `#00e5a0`, tipografía Syne. Alta diferenciación pero sin identidad de marca. |
+| **v3-Blue** | Variante all-navy con Barlow. Descartada — menos diferenciación visual. |
+| **v3 — Dark Navy + Electric (actual)** | Navy profundo `#060b18` + verde eléctrico `#00e5a0`. Barlow Condensed. Enso integrado como motivo gráfico. Coherencia marca + tech. |
+
+---
+
+## 12. Pendientes / Roadmap
+
+- [x] ~~Rediseño home~~ ✓
+- [x] ~~Rediseño /productos~~ ✓
+- [x] ~~Logo real integrado~~ ✓
+- [x] ~~og:image social sharing~~ ✓
+- [x] ~~Fuentes migradas a next/font~~ ✓
+- [ ] Integración Mercado Pago en FlowSport
+- [ ] Página de blog / casos de éxito
+- [ ] Animaciones de entrada scroll (Intersection Observer)
+- [ ] og:image dinámica por ruta (`app/opengraph-image.tsx`)
+- [ ] Google Analytics o Plausible
+- [ ] Formulario de contacto propio (hoy todo deriva a WhatsApp)
+- [ ] Verificar handle real de Twitter/X → actualizar `twitter.site` en layout.tsx
+- [ ] Favicon `.ico` dedicado (hoy usa logo.jpeg)
+
+---
+
+## 13. Comandos útiles
+
+```powershell
+# Desarrollo
+npm run dev           # local → http://localhost:3000
+
+# Validación antes de commit
+npx tsc --noEmit      # TypeScript sin errores
+
+# Deploy
+git add .
+git commit -m "feat: descripción"
+git push origin main  # Vercel despliega automáticamente
+```
+
+---
+
+*Este documento fue generado y actualizado con Claude (Anthropic) en Mayo 2026 a partir del código fuente del repositorio `betterflow-web`.*
