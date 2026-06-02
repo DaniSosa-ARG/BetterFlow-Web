@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import FlowLoopIcon from '@/components/FlowLoopIcon';
 import { useLanguage } from '@/lib/LanguageContext';
 import { useEffect, useRef } from 'react';
 
@@ -83,10 +82,10 @@ export default function Hero() {
                 color: '#fff',
               }}
             >
-              Menos teléfono.<br />
-              Mejor experiencia{' '}
+              Tu equipo,<br />
+              trabajando mejor.<br />
               <span style={{ background: 'linear-gradient(120deg, #A855F7 0%, #00C4FF 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent', color: 'transparent' }}>
-                para las personas.
+                Más foco en crecer.
               </span>
             </h1>
 
@@ -100,8 +99,7 @@ export default function Hero() {
                 marginBottom: 32,
               }}
             >
-              Implementamos agentes de WhatsApp e inteligencia artificial que reservan y confirman turnos{' '}
-              <strong style={{ color: '#fff' }}>las 24 horas</strong>. Tu equipo suelta el teléfono; tus clientes agendan desde el chat que ya usan todos los días.
+              Diagnosticamos cómo trabaja tu equipo hoy, rediseñamos los procesos que frenan el crecimiento e incorporamos IA donde realmente suma. Resultados medibles en 30 días.
             </p>
 
             {/* CTAs */}
@@ -174,104 +172,74 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right: WhatsApp phone mockup */}
+          {/* Right: bento grid 2×2 */}
           <div className="flex justify-center lg:justify-end reveal" style={{ animationDelay: '0.15s' }}>
             <div
               style={{
-                position: 'relative',
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: 10,
                 width: 340,
                 maxWidth: '100%',
-                background: '#0B141A',
-                borderRadius: 38,
-                padding: 12,
-                boxShadow: 'var(--shadow-lg)',
-                border: '1px solid rgba(255,255,255,.06)',
               }}
             >
-              <div style={{ borderRadius: 28, overflow: 'hidden', background: '#E5DDD5' }}>
-                {/* WA header */}
+              {[
+                {
+                  icon: '🔍',
+                  title: 'Diagnóstico',
+                  sub: 'Oportunidades para ser más eficientes',
+                  accent: 'rgba(168,85,247',
+                },
+                {
+                  icon: '⚙️',
+                  title: 'Diseño',
+                  sub: 'Procesos que fluyen',
+                  accent: 'rgba(168,85,247',
+                },
+                {
+                  icon: '🤖',
+                  title: 'Incorporamos IA',
+                  sub: 'Agentes donde realmente suman',
+                  accent: 'rgba(0,196,255',
+                },
+                {
+                  icon: '📈',
+                  title: 'Resultados',
+                  sub: 'Medibles en 30 días',
+                  accent: 'rgba(0,229,160',
+                },
+              ].map((cell) => (
                 <div
-                  className="flex items-center gap-3"
-                  style={{ background: '#075E54', color: '#fff', padding: '16px 16px 14px' }}
+                  key={cell.title}
+                  style={{
+                    background: `${cell.accent},0.09)`,
+                    border: `0.5px solid ${cell.accent},0.25)`,
+                    borderRadius: 12,
+                    padding: 20,
+                  }}
                 >
-                  <div
-                    className="flex items-center justify-center flex-shrink-0"
-                    style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--grad)' }}
-                  >
-                    <FlowLoopIcon size={24} color="#fff" />
+                  <div style={{ fontSize: 24, marginBottom: 8 }}>{cell.icon}</div>
+                  <div style={{
+                    fontFamily: "'Barlow Condensed', sans-serif",
+                    fontWeight: 700,
+                    fontSize: 13,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.08em',
+                    color: '#f3e8ff',
+                  }}>
+                    {cell.title}
                   </div>
-                  <div>
-                    <div style={{ fontWeight: 600, fontSize: 15.5, lineHeight: 1.1 }}>FlowSport · Complejo</div>
-                    <div className="flex items-center gap-1" style={{ fontSize: 12, color: '#B7D8D2' }}>
-                      <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#3ad07f', display: 'inline-block' }} />
-                      en línea
-                    </div>
-                  </div>
-                </div>
-
-                {/* Chat messages */}
-                <div
-                  className="flex flex-col gap-2"
-                  style={{ background: '#E5DDD5', padding: '18px 14px', minHeight: 340 }}
-                >
-                  {[
-                    { me: false, text: '¡Hola! 👋 ¿Querés reservar una cancha? Decime día y horario y te muestro lo libre.', time: '18:40' },
-                    { me: true,  text: 'Hoy a la noche, fútbol 5', time: '18:40' },
-                    { me: false, text: 'Para hoy me queda:\n⚽ 20:00 — Cancha 3\n⚽ 21:00 — Cancha 1\n⚽ 22:00 — Cancha 3', time: '18:40' },
-                    { me: true,  text: 'Dale, 21 en la 1', time: '18:41' },
-                  ].map((msg, i) => (
-                    <div key={i} className={`bubble bubble-${i + 1} flex ${msg.me ? 'justify-end' : 'justify-start'}`}>
-                      <div
-                        style={{
-                          maxWidth: '80%',
-                          padding: '9px 12px',
-                          borderRadius: 12,
-                          borderTopLeftRadius: msg.me ? 12 : 3,
-                          borderTopRightRadius: msg.me ? 3 : 12,
-                          fontSize: 14,
-                          lineHeight: 1.42,
-                          boxShadow: '0 1px 1px rgba(0,0,0,.08)',
-                          background: msg.me ? '#D9FDD3' : '#fff',
-                          color: '#111B21',
-                          whiteSpace: 'pre-line',
-                        }}
-                      >
-                        {msg.text}
-                        <span style={{ display: 'block', textAlign: 'right', fontSize: 10.5, color: msg.me ? 'rgba(7,94,84,.5)' : 'rgba(0,0,0,.42)', marginTop: 3, fontFamily: 'var(--font-mono), monospace' }}>
-                          {msg.time}{msg.me && <span style={{ color: '#34B7F1', fontWeight: 700 }}> ✓✓</span>}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-
-                  {/* Confirmation card */}
-                  <div className="bubble bubble-4 flex justify-start" style={{ animationDelay: '2.0s' }}>
-                    <div style={{ maxWidth: '86%', borderRadius: 12, borderTopLeftRadius: 3, overflow: 'hidden', background: '#fff', boxShadow: '0 1px 1px rgba(0,0,0,.08)' }}>
-                      <div style={{ background: 'var(--green)', color: 'var(--navy-900)', padding: '8px 12px', fontFamily: 'var(--font-mono), monospace', fontSize: 11, fontWeight: 600, letterSpacing: '0.04em' }}>
-                        RES-2207 · RESERVADO
-                      </div>
-                      <div style={{ padding: '11px 12px', fontSize: 13.5, color: '#111B21' }}>
-                        <strong style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: 17 }}>Hoy · 21:00</strong><br />
-                        Cancha 1 · Fútbol 5<br />
-                        Seña abonada ✅
-                      </div>
-                    </div>
+                  <div style={{
+                    fontFamily: 'Barlow, sans-serif',
+                    fontWeight: 400,
+                    fontSize: 12,
+                    color: 'rgba(243,232,255,0.55)',
+                    marginTop: 4,
+                  }}>
+                    {cell.sub}
                   </div>
                 </div>
-
-                {/* Input bar */}
-                <div className="flex items-center gap-2" style={{ background: '#F0F0F0', padding: '9px 12px' }}>
-                  <div style={{ flex: 1, background: '#fff', borderRadius: 999, padding: '9px 14px', fontSize: 13, color: '#9aa0a6' }}>
-                    Escribí un mensaje…
-                  </div>
-                  <div
-                    className="flex items-center justify-center flex-shrink-0"
-                    style={{ width: 38, height: 38, borderRadius: '50%', background: 'var(--wa)' }}
-                  >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
