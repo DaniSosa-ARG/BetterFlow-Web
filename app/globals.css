@@ -2,17 +2,16 @@
 
 :root {
   --bg0: #060b18;
-  --bg1: #0a1020;
-  --bg2: #0e1628;
-  --bg3: #162040;
-  --electric: #00e5a0;
-  --electric2: #00c4ff;
-  --electric-dim: rgba(0,229,160,0.12);
-  --electric-border: rgba(0,229,160,0.22);
-  --white: #eef4ff;
-  --w70: rgba(238,244,255,0.7);
-  --w40: rgba(238,244,255,0.4);
-  --w10: rgba(238,244,255,0.08);
+  --bg1: #0d0a1a;
+  --bg2: #0a0718;
+  --bg3: #130e24;
+  --violet-deep: #7c3aed;
+  --violet: #a855f7;
+  --fuchsia: #e879f9;
+  --white: #f3e8ff;
+  --w65: rgba(243,232,255,0.65);
+  --w40: rgba(243,232,255,0.4);
+  --w10: rgba(243,232,255,0.08);
 }
 
 html { scroll-behavior: smooth; }

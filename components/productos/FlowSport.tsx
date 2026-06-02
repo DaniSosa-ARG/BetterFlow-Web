@@ -16,7 +16,7 @@ export default function FlowSport() {
   ];
 
   return (
-    <section id="flowsport" className="py-20" style={{ background: '#0a1020' }}>
+    <section id="flowsport" className="py-20" style={{ background: '#0d0a1a' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
@@ -36,7 +36,7 @@ export default function FlowSport() {
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                   </div>
-                  <span className="text-sm leading-relaxed" style={{ color: 'rgba(238,244,255,0.8)', fontWeight: 400 }}>
+                  <span className="text-sm leading-relaxed" style={{ color: 'rgba(243,232,255,0.8)', fontWeight: 400 }}>
                     {feat}
                     {feat.includes('Mercado Pago') && (
                       <span className="ml-2 text-xs px-1.5 py-0.5 rounded"
@@ -60,11 +60,11 @@ export default function FlowSport() {
             <h2 className="mb-5 leading-none" style={{
               fontFamily: "'Barlow Condensed',sans-serif",
               fontWeight: 900, fontSize: 'clamp(32px,4vw,48px)',
-              textTransform: 'uppercase', letterSpacing: '-1px', color: '#eef4ff',
+              textTransform: 'uppercase', letterSpacing: '-1px', color: '#f3e8ff',
             }}>
               FlowSport
             </h2>
-            <p className="text-base leading-relaxed mb-7" style={{ color: 'rgba(238,244,255,0.65)', fontWeight: 300 }}>
+            <p className="text-base leading-relaxed mb-7" style={{ color: 'rgba(243,232,255,0.65)', fontWeight: 300 }}>
               {tr(t.flowsport.titulo, lang).replace('FlowSport — ', '')}
             </p>
 

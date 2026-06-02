@@ -49,13 +49,13 @@ export default function ProductosDestacados() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-11">
           <div className="flex items-center gap-2 mb-3">
-            <div className="w-5 h-px" style={{ background: '#00e5a0' }} />
-            <span className="text-xs font-700 uppercase tracking-widest" style={{ color: '#00e5a0', fontWeight: 700, letterSpacing: '0.15em' }}>Productos</span>
+            <div className="w-5 h-px" style={{ background: '#a855f7' }} />
+            <span className="text-xs font-700 uppercase tracking-widest" style={{ color: '#a855f7', fontWeight: 700, letterSpacing: '0.15em' }}>Productos</span>
           </div>
-          <h2 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: 'clamp(32px,4vw,46px)', textTransform: 'uppercase', letterSpacing: '-1px', color: '#eef4ff' }}>
+          <h2 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: 'clamp(32px,4vw,46px)', textTransform: 'uppercase', letterSpacing: '-1px', color: '#f3e8ff' }}>
             {tr(t.productosDestacados.titulo, lang)}
           </h2>
-          <p className="mt-1.5 text-sm" style={{ color: 'rgba(238,244,255,0.4)', fontWeight: 300 }}>{tr(t.productosDestacados.subtitulo, lang)}</p>
+          <p className="mt-1.5 text-sm" style={{ color: 'rgba(243,232,255,0.4)', fontWeight: 300 }}>{tr(t.productosDestacados.subtitulo, lang)}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -70,11 +70,11 @@ export default function ProductosDestacados() {
                 style={{ background: p.badgeBg, color: p.badgeColor, border: `1px solid ${p.badgeBorder}`, fontWeight: 700 }}>
                 {p.badge}
               </span>
-              <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: 40, textTransform: 'uppercase', letterSpacing: '-0.5px', color: '#eef4ff', lineHeight: 1, marginBottom: 12 }}>
+              <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: 40, textTransform: 'uppercase', letterSpacing: '-0.5px', color: '#f3e8ff', lineHeight: 1, marginBottom: 12 }}>
                 {p.name}
               </div>
-              <p className="text-sm leading-relaxed mb-6" style={{ color: 'rgba(238,244,255,0.7)', fontWeight: 300 }}>{p.desc}</p>
-              <div className="text-xl font-800 mb-5" style={{ color: '#eef4ff', fontWeight: 800, fontFamily: 'Barlow, sans-serif' }}>
+              <p className="text-sm leading-relaxed mb-6" style={{ color: 'rgba(243,232,255,0.65)', fontWeight: 300 }}>{p.desc}</p>
+              <div className="text-xl font-800 mb-5" style={{ color: '#f3e8ff', fontWeight: 800, fontFamily: 'Barlow, sans-serif' }}>
                 {p.price}
               </div>
               <Link href={p.href}

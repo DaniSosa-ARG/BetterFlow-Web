@@ -25,7 +25,7 @@ export function BetterFlowLogo({ size = 38 }: { size?: number }) {
         fontWeight: 900,
         fontSize: 20,
         letterSpacing: '-0.5px',
-        color: '#eef4ff',
+        color: '#f3e8ff',
         textTransform: 'uppercase' as const,
         lineHeight: 1,
       }}>
@@ -34,7 +34,7 @@ export function BetterFlowLogo({ size = 38 }: { size?: number }) {
           fontSize: 8,
           fontWeight: 600,
           letterSpacing: '1.5px',
-          color: '#00e5a0',
+          color: '#a855f7',
           verticalAlign: 'super',
           fontFamily: 'Barlow, sans-serif',
           textTransform: 'none' as const,
@@ -71,7 +71,7 @@ export default function Header() {
       style={{
         backgroundColor: scrolled ? 'rgba(6,11,24,0.96)' : '#060b18',
         backdropFilter: scrolled ? 'blur(16px)' : 'none',
-        borderBottom: '1px solid rgba(0,229,160,0.1)',
+        borderBottom: '1px solid rgba(168,85,247,0.1)',
         boxShadow: scrolled ? '0 4px 32px rgba(0,0,0,0.5)' : 'none',
       }}
     >
@@ -93,9 +93,9 @@ export default function Header() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm transition-colors"
-                  style={{ color: 'rgba(238,244,255,0.45)' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#eef4ff')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(238,244,255,0.45)')}
+                  style={{ color: 'rgba(243,232,255,0.45)' }}
+                  onMouseEnter={e => (e.currentTarget.style.color = '#f3e8ff')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(243,232,255,0.45)')}
                 >
                   {link.label}
                 </a>
@@ -104,9 +104,9 @@ export default function Header() {
                   key={link.href}
                   href={link.href}
                   className="text-sm transition-colors"
-                  style={{ color: 'rgba(238,244,255,0.45)' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#eef4ff')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(238,244,255,0.45)')}
+                  style={{ color: 'rgba(243,232,255,0.45)' }}
+                  onMouseEnter={e => (e.currentTarget.style.color = '#f3e8ff')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(243,232,255,0.45)')}
                 >
                   {link.label}
                 </Link>
@@ -118,7 +118,7 @@ export default function Header() {
           <div className="hidden md:flex items-center gap-3">
             <div
               className="flex items-center rounded overflow-hidden"
-              style={{ border: '1px solid rgba(0,229,160,0.25)' }}
+              style={{ border: '1px solid rgba(168,85,247,0.25)' }}
             >
               {(['es', 'en'] as const).map((l) => (
                 <button
@@ -126,8 +126,8 @@ export default function Header() {
                   onClick={() => setLang(l)}
                   className="px-3 py-1 text-xs uppercase transition-colors"
                   style={{
-                    backgroundColor: lang === l ? '#00e5a0' : 'transparent',
-                    color: lang === l ? '#060b18' : 'rgba(238,244,255,0.45)',
+                    backgroundColor: lang === l ? '#a855f7' : 'transparent',
+                    color: lang === l ? '#f3e8ff' : 'rgba(243,232,255,0.45)',
                     fontFamily: 'Barlow, sans-serif',
                     fontWeight: 700,
                     letterSpacing: '0.08em',
@@ -144,18 +144,18 @@ export default function Header() {
               rel="noopener noreferrer"
               className="px-5 py-2 text-sm rounded transition-all"
               style={{
-                backgroundColor: '#00e5a0',
-                color: '#060b18',
+                background: 'linear-gradient(135deg,#7c3aed,#a855f7)',
+                color: '#fff',
                 fontFamily: 'Barlow, sans-serif',
                 fontWeight: 800,
-                boxShadow: '0 0 20px rgba(0,229,160,0.25)',
+                boxShadow: '0 6px 28px rgba(168,85,247,0.4)',
               }}
               onMouseEnter={e => {
-                e.currentTarget.style.boxShadow = '0 6px 28px rgba(0,229,160,0.45)';
-                e.currentTarget.style.transform = 'translateY(-1px)';
+                e.currentTarget.style.boxShadow = '0 10px 36px rgba(168,85,247,0.6)';
+                e.currentTarget.style.transform = 'translateY(-2px)';
               }}
               onMouseLeave={e => {
-                e.currentTarget.style.boxShadow = '0 0 20px rgba(0,229,160,0.25)';
+                e.currentTarget.style.boxShadow = '0 6px 28px rgba(168,85,247,0.4)';
                 e.currentTarget.style.transform = '';
               }}
             >
@@ -166,7 +166,7 @@ export default function Header() {
           {/* Mobile hamburger */}
           <button
             className="md:hidden p-2"
-            style={{ color: '#eef4ff' }}
+            style={{ color: '#f3e8ff' }}
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Menú"
           >
@@ -183,7 +183,7 @@ export default function Header() {
         {mobileOpen && (
           <div
             className="md:hidden pb-5 pt-3"
-            style={{ borderTop: '1px solid rgba(0,229,160,0.08)' }}
+            style={{ borderTop: '1px solid rgba(168,85,247,0.08)' }}
           >
             <nav className="flex flex-col gap-4 mb-4">
               {navLinks.map((link) =>
@@ -194,7 +194,7 @@ export default function Header() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm"
-                    style={{ color: 'rgba(238,244,255,0.6)' }}
+                    style={{ color: 'rgba(243,232,255,0.6)' }}
                     onClick={() => setMobileOpen(false)}
                   >
                     {link.label}
@@ -204,7 +204,7 @@ export default function Header() {
                     key={link.href}
                     href={link.href}
                     className="text-sm"
-                    style={{ color: 'rgba(238,244,255,0.6)' }}
+                    style={{ color: 'rgba(243,232,255,0.6)' }}
                     onClick={() => setMobileOpen(false)}
                   >
                     {link.label}
@@ -215,7 +215,7 @@ export default function Header() {
             <div className="flex items-center gap-3">
               <div
                 className="flex rounded overflow-hidden"
-                style={{ border: '1px solid rgba(0,229,160,0.25)' }}
+                style={{ border: '1px solid rgba(168,85,247,0.25)' }}
               >
                 {(['es', 'en'] as const).map((l) => (
                   <button
@@ -223,8 +223,8 @@ export default function Header() {
                     onClick={() => setLang(l)}
                     className="px-3 py-1 text-xs uppercase"
                     style={{
-                      backgroundColor: lang === l ? '#00e5a0' : 'transparent',
-                      color: lang === l ? '#060b18' : 'rgba(238,244,255,0.45)',
+                      backgroundColor: lang === l ? '#a855f7' : 'transparent',
+                      color: lang === l ? '#f3e8ff' : 'rgba(243,232,255,0.45)',
                       fontWeight: 700,
                     }}
                   >
@@ -237,7 +237,11 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-5 py-2 text-sm rounded"
-                style={{ backgroundColor: '#00e5a0', color: '#060b18', fontWeight: 800 }}
+                style={{
+                  background: 'linear-gradient(135deg,#7c3aed,#a855f7)',
+                  color: '#fff',
+                  fontWeight: 800,
+                }}
               >
                 {tr(t.nav.cta, lang)}
               </a>

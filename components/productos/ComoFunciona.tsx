@@ -19,11 +19,11 @@ const steps = [
   {
     num: '02',
     keyLabel: 'paso2' as const,
-    color: '#00e5a0',
-    border: 'rgba(0,229,160,0.25)',
-    bg: 'rgba(0,229,160,0.08)',
+    color: '#a855f7',
+    border: 'rgba(168,85,247,0.25)',
+    bg: 'rgba(168,85,247,0.08)',
     icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00e5a0" strokeWidth="2">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="2">
         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
       </svg>
     ),
@@ -31,11 +31,11 @@ const steps = [
   {
     num: '03',
     keyLabel: 'paso3' as const,
-    color: '#00c4ff',
-    border: 'rgba(0,196,255,0.25)',
-    bg: 'rgba(0,196,255,0.08)',
+    color: '#a855f7',
+    border: 'rgba(168,85,247,0.25)',
+    bg: 'rgba(168,85,247,0.08)',
     icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00c4ff" strokeWidth="2">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="2">
         <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" />
       </svg>
     ),
@@ -50,11 +50,11 @@ export default function ComoFunciona() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-11 text-center">
           <div className="flex items-center justify-center gap-2 mb-3">
-            <div className="w-5 h-px" style={{ background: '#00e5a0' }} />
-            <span className="text-xs font-700 uppercase tracking-widest" style={{ color: '#00e5a0', fontWeight: 700, letterSpacing: '0.15em' }}>Proceso</span>
-            <div className="w-5 h-px" style={{ background: '#00e5a0' }} />
+            <div className="w-5 h-px" style={{ background: '#a855f7' }} />
+            <span className="text-xs font-700 uppercase tracking-widest" style={{ color: '#a855f7', fontWeight: 700, letterSpacing: '0.15em' }}>Proceso</span>
+            <div className="w-5 h-px" style={{ background: '#a855f7' }} />
           </div>
-          <h2 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: 'clamp(32px,4vw,46px)', textTransform: 'uppercase', letterSpacing: '-1px', color: '#eef4ff' }}>
+          <h2 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: 'clamp(32px,4vw,46px)', textTransform: 'uppercase', letterSpacing: '-1px', color: '#f3e8ff' }}>
             {tr(t.comoFunciona.titulo, lang)}
           </h2>
         </div>
@@ -62,7 +62,7 @@ export default function ComoFunciona() {
         <div className="relative grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* Connector line (desktop) */}
           <div className="hidden md:block absolute top-10 h-px"
-            style={{ background: 'linear-gradient(90deg,rgba(0,229,160,0.2),rgba(0,196,255,0.2))', left: '22%', right: '22%' }} />
+            style={{ background: 'linear-gradient(90deg,rgba(168,85,247,0.2),rgba(232,121,249,0.2))', left: '22%', right: '22%' }} />
 
           {steps.map((s) => (
             <div key={s.num} className="flex flex-col items-center text-center">
@@ -76,7 +76,7 @@ export default function ComoFunciona() {
                   <span style={{ fontSize: 9, fontWeight: 800, color: s.color, fontFamily: 'Barlow Condensed, sans-serif' }}>{s.num}</span>
                 </div>
               </div>
-              <h3 className="text-sm font-700" style={{ color: '#eef4ff', fontWeight: 700 }}>
+              <h3 className="text-sm font-700" style={{ color: '#f3e8ff', fontWeight: 700 }}>
                 {tr(t.comoFunciona[s.keyLabel], lang)}
               </h3>
             </div>

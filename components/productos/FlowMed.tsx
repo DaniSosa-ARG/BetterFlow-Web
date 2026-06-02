@@ -30,11 +30,11 @@ export default function FlowMed() {
             <h2 className="mb-5 leading-none" style={{
               fontFamily: "'Barlow Condensed',sans-serif",
               fontWeight: 900, fontSize: 'clamp(32px,4vw,48px)',
-              textTransform: 'uppercase', letterSpacing: '-1px', color: '#eef4ff',
+              textTransform: 'uppercase', letterSpacing: '-1px', color: '#f3e8ff',
             }}>
               FlowMed
             </h2>
-            <p className="text-base leading-relaxed mb-7" style={{ color: 'rgba(238,244,255,0.65)', fontWeight: 300 }}>
+            <p className="text-base leading-relaxed mb-7" style={{ color: 'rgba(243,232,255,0.65)', fontWeight: 300 }}>
               {tr(t.flowmed.titulo, lang).replace('FlowMed — ', '')}
             </p>
 
@@ -81,7 +81,7 @@ export default function FlowMed() {
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                   </div>
-                  <span className="text-sm leading-relaxed" style={{ color: 'rgba(238,244,255,0.8)', fontWeight: 400 }}>
+                  <span className="text-sm leading-relaxed" style={{ color: 'rgba(243,232,255,0.8)', fontWeight: 400 }}>
                     {feat}
                   </span>
                 </div>
