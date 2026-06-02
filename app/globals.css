@@ -1,29 +1,53 @@
 @import "tailwindcss";
 
 :root {
-  --bg0: #060b18;
-  --bg1: #0a1020;
-  --bg2: #0e1628;
-  --bg3: #162040;
-  --electric: #00e5a0;
-  --electric2: #00c4ff;
-  --electric-dim: rgba(0,229,160,0.12);
-  --electric-border: rgba(0,229,160,0.22);
-  --white: #eef4ff;
-  --w70: rgba(238,244,255,0.7);
-  --w40: rgba(238,244,255,0.4);
-  --w10: rgba(238,244,255,0.08);
+  /* Brand navy */
+  --navy-900: #060B18;
+  --navy-800: #0C1426;
+  --navy-700: #15203B;
+
+  /* Brand accent */
+  --violet: #A855F7;
+  --violet-deep: #7C3AED;
+  --violet-bright: #C9A2FB;
+  --cyan: #00C4FF;
+  --green: #00E5A0;
+  --wa: #25D366;
+  --wa-deep: #1ebe5a;
+
+  /* Warm neutrals */
+  --cream: #F7F4EF;
+  --cream-2: #EFEAE2;
+  --sand: #E4DCD0;
+  --ink: #1A1A22;
+  --ink-soft: #54515E;
+  --line: #E6DFD5;
+
+  /* Radius */
+  --radius: 18px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(20,15,10,.05), 0 2px 8px rgba(20,15,10,.04);
+  --shadow:    0 10px 30px -12px rgba(30,20,10,.18), 0 4px 12px -6px rgba(30,20,10,.10);
+  --shadow-lg: 0 40px 80px -28px rgba(30,18,8,.30), 0 12px 28px -14px rgba(30,18,8,.16);
+
+  --grad: linear-gradient(120deg, var(--violet) 0%, var(--cyan) 100%);
 }
 
 html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-barlow), 'Barlow', sans-serif;
-  color: var(--white);
-  background: var(--bg0);
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* WhatsApp chat bubble animation */
+/* ---- WhatsApp chat bubble animation ---- */
 @keyframes bubbleIn {
   from { opacity: 0; transform: scale(0.85) translateY(10px); }
   to   { opacity: 1; transform: scale(1) translateY(0); }
@@ -34,24 +58,7 @@ body {
 .bubble-3 { animation-delay: 1.4s; }
 .bubble-4 { animation-delay: 2.0s; }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.fade-in-up { animation: fadeInUp 0.6s ease forwards; }
-
-@keyframes ping-dot {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(37,99,235,.5); }
-  50%       { opacity: .7; box-shadow: 0 0 0 5px rgba(37,99,235,0); }
-}
-.ping-dot { animation: ping-dot 2s infinite; }
-
-@keyframes ping-dot-green {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0,229,160,.6); }
-  50%       { opacity: .7; box-shadow: 0 0 0 5px rgba(0,229,160,0); }
-}
-.ping-dot-green { animation: ping-dot-green 2s infinite; }
-
+/* ---- Typing dots ---- */
 @keyframes td {
   0%, 60%, 100% { transform: translateY(0); }
   30%            { transform: translateY(-5px); }
@@ -59,3 +66,14 @@ body {
 .td-1 { animation: td 1.2s 0.0s infinite; }
 .td-2 { animation: td 1.2s 0.2s infinite; }
 .td-3 { animation: td 1.2s 0.4s infinite; }
+
+/* ---- Scroll reveal ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}

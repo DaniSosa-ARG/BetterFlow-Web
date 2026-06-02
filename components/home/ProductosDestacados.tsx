@@ -1,89 +1,120 @@
 'use client';
 
 import Link from 'next/link';
-import { useLanguage } from '@/lib/LanguageContext';
-import { t, tr } from '@/lib/translations';
+import { useEffect, useRef } from 'react';
+import FlowLoopIcon from '@/components/FlowLoopIcon';
+
+const products = [
+  {
+    id: 'med',
+    tag: 'Salud',
+    tagColor: 'var(--cyan)',
+    name: 'Flow',
+    nameB: 'Med',
+    accentColor: 'var(--cyan)',
+    bg: 'radial-gradient(120% 130% at 85% 12%, #0a2a3a, var(--navy-900))',
+    desc: 'Gestión de turnos para consultorios y clínicas. Tus pacientes agendan en segundos; tu secretaría respira.',
+    features: ['Identificación por nombre o DNI', 'Disponibilidad en tiempo real', 'Recordatorios que reducen ausencias'],
+    href: '/productos#flowmed',
+    ctaLabel: 'Conocer FlowMed',
+    symbolColor: 'var(--cyan)',
+  },
+  {
+    id: 'sport',
+    tag: 'Deporte',
+    tagColor: 'var(--green)',
+    name: 'Flow',
+    nameB: 'Sport',
+    accentColor: 'var(--green)',
+    bg: 'radial-gradient(120% 130% at 85% 12%, #0a3329, var(--navy-900))',
+    desc: 'Reservas de canchas y espacios deportivos. Tus clientes reservan y señan solos, incluso a las 2 de la mañana.',
+    features: ['Reserva y seña por WhatsApp', 'Disponibilidad por cancha y horario', 'Menos huecos, más ocupación'],
+    href: '/productos#flowsport',
+    ctaLabel: 'Conocer FlowSport',
+    symbolColor: 'var(--green)',
+  },
+];
 
 export default function ProductosDestacados() {
-  const { lang } = useLanguage();
+  const ref = useRef<HTMLElement>(null);
 
-  const products = [
-    {
-      id: 'flowmed',
-      badge: tr(t.productosDestacados.flowmedBadge, lang),
-      name: 'FlowMed',
-      desc: tr(t.productosDestacados.flowmedDesc, lang),
-      price: tr(t.productosDestacados.flowmedPrecio, lang),
-      cta: tr(t.productosDestacados.flowmedCta, lang),
-      href: '/productos#flowmed',
-      bg: 'linear-gradient(160deg,#080f1e 0%,#0b1528 50%,#0f1d3a 100%)',
-      border: 'rgba(0,196,255,0.18)',
-      badgeColor: '#67e8f9',
-      badgeBg: 'rgba(0,196,255,0.1)',
-      badgeBorder: 'rgba(0,196,255,0.25)',
-      btnBg: 'linear-gradient(135deg,#0ea5e9,#67e8f9)',
-      glowColor: '#00c4ff',
-      ensoRotate: 0,
-    },
-    {
-      id: 'flowsport',
-      badge: tr(t.productosDestacados.flowsportBadge, lang),
-      name: 'FlowSport',
-      desc: tr(t.productosDestacados.flowsportDesc, lang),
-      price: tr(t.productosDestacados.flowsportPrecio, lang),
-      cta: tr(t.productosDestacados.flowsportCta, lang),
-      href: '/productos#flowsport',
-      bg: 'linear-gradient(160deg,#060e0a 0%,#091410 50%,#0c1a14 100%)',
-      border: 'rgba(0,229,160,0.2)',
-      badgeColor: '#00e5a0',
-      badgeBg: 'rgba(0,229,160,0.08)',
-      badgeBorder: 'rgba(0,229,160,0.22)',
-      btnBg: '#00e5a0',
-      glowColor: '#00e5a0',
-      ensoRotate: 90,
-    },
-  ];
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const els = el.querySelectorAll<HTMLElement>('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('in')); return; }
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }),
+      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+    );
+    els.forEach(e => io.observe(e));
+    const fb = setTimeout(() => els.forEach(e => e.classList.add('in')), 1600);
+    return () => { io.disconnect(); clearTimeout(fb); };
+  }, []);
 
   return (
-    <section className="py-20" style={{ background: '#060b18' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-11">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-5 h-px" style={{ background: '#00e5a0' }} />
-            <span className="text-xs font-700 uppercase tracking-widest" style={{ color: '#00e5a0', fontWeight: 700, letterSpacing: '0.15em' }}>Productos</span>
-          </div>
-          <h2 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: 'clamp(32px,4vw,46px)', textTransform: 'uppercase', letterSpacing: '-1px', color: '#eef4ff' }}>
-            {tr(t.productosDestacados.titulo, lang)}
+    <section id="productos" ref={ref as React.RefObject<HTMLDivElement>} style={{ padding: '104px 0', background: 'var(--cream-2)' }}>
+      <div className="max-w-[1200px] mx-auto px-7">
+        <div className="text-center reveal" style={{ marginBottom: 56 }}>
+          <p className="flex items-center justify-center gap-2" style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--violet-deep)', fontWeight: 600, marginBottom: 18 }}>
+            <span style={{ width: 22, height: 2, borderRadius: 2, background: 'var(--grad)', display: 'inline-block' }} />
+            Nuestros productos
+          </p>
+          <h2 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 900, fontSize: 'clamp(38px,5vw,64px)', letterSpacing: '-0.01em', lineHeight: 0.94, textTransform: 'uppercase', color: 'var(--ink)', marginBottom: 18 }}>
+            Una base, dos mundos
           </h2>
-          <p className="mt-1.5 text-sm" style={{ color: 'rgba(238,244,255,0.4)', fontWeight: 300 }}>{tr(t.productosDestacados.subtitulo, lang)}</p>
+          <p style={{ fontSize: 'clamp(18px,1.5vw,21px)', lineHeight: 1.55, color: 'var(--ink-soft)', maxWidth: '56ch', margin: '0 auto' }}>
+            El mismo motor de IA, afinado para lo que tu negocio necesita.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {products.map((p) => (
-            <div key={p.id} className="relative rounded-2xl p-9 overflow-hidden"
-              style={{ background: p.bg, border: `1px solid ${p.border}` }}>
-              {/* Enso decoration */}
-              <svg className="absolute pointer-events-none" style={{ right: -40, bottom: -40, width: 200, height: 200, opacity: 0.05 }} viewBox="0 0 200 200" fill="none">
-                <circle cx="100" cy="100" r="80" stroke={p.glowColor} strokeWidth="14" strokeDasharray="400 100" strokeLinecap="round" transform={`rotate(${p.ensoRotate} 100 100)`} />
-              </svg>
-              <span className="inline-flex items-center gap-1.5 text-xs font-700 uppercase tracking-widest px-3 py-1.5 rounded mb-5"
-                style={{ background: p.badgeBg, color: p.badgeColor, border: `1px solid ${p.badgeBorder}`, fontWeight: 700 }}>
-                {p.badge}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {products.map((p, i) => (
+            <div
+              key={p.id}
+              className="reveal flex flex-col"
+              style={{
+                background: p.bg,
+                borderRadius: 'var(--radius-lg)',
+                padding: 40,
+                color: '#fff',
+                position: 'relative',
+                overflow: 'hidden',
+                minHeight: 320,
+                transitionDelay: `${i * 0.1}s`,
+              }}
+            >
+              <div style={{ width: 60, height: 60, marginBottom: 22 }}>
+                <FlowLoopIcon size={60} color={p.symbolColor} />
+              </div>
+              <span style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 12, letterSpacing: '0.14em', textTransform: 'uppercase', color: p.accentColor }}>
+                {p.tag}
               </span>
-              <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: 40, textTransform: 'uppercase', letterSpacing: '-0.5px', color: '#eef4ff', lineHeight: 1, marginBottom: 12 }}>
-                {p.name}
+              <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 900, fontSize: 40, lineHeight: 0.9, margin: '8px 0 14px' }}>
+                {p.name}<b style={{ color: p.accentColor }}>{p.nameB}</b>
               </div>
-              <p className="text-sm leading-relaxed mb-6" style={{ color: 'rgba(238,244,255,0.7)', fontWeight: 300 }}>{p.desc}</p>
-              <div className="text-xl font-800 mb-5" style={{ color: '#eef4ff', fontWeight: 800, fontFamily: 'Barlow, sans-serif' }}>
-                {p.price}
-              </div>
-              <Link href={p.href}
-                className="inline-block px-6 py-2.5 rounded text-sm font-800 transition-all"
-                style={{ background: p.btnBg, color: '#060b18', fontWeight: 800, boxShadow: `0 6px 20px rgba(0,0,0,0.3)` }}
-                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.opacity = '0.9'; }}
-                onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.opacity = '1'; }}
+              <p style={{ color: '#C3CAD8', fontSize: 15.5, lineHeight: 1.55, margin: '0 0 22px', maxWidth: '42ch' }}>{p.desc}</p>
+              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 26px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+                {p.features.map((feat) => (
+                  <li key={feat} className="flex items-start gap-2" style={{ fontSize: 14.5, color: '#D6DCE8' }}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" width="18" height="18" style={{ flexShrink: 0, marginTop: 2, color: p.accentColor }}>
+                      <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                    {feat}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href={p.href}
+                className="mt-auto inline-flex items-center gap-2 transition-all"
+                style={{ color: p.accentColor, fontWeight: 600, fontSize: 15.5 }}
+                onMouseEnter={e => (e.currentTarget.querySelector('svg') as SVGElement | null)?.style.setProperty('transform', 'translateX(4px)')}
+                onMouseLeave={e => (e.currentTarget.querySelector('svg') as SVGElement | null)?.style.setProperty('transform', '')}
               >
-                {p.cta} →
+                {p.ctaLabel}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" width="17" height="17" style={{ transition: 'transform .2s' }}>
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
               </Link>
             </div>
           ))}

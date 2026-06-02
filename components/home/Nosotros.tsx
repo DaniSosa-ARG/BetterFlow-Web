@@ -1,64 +1,114 @@
 'use client';
 
-import { useLanguage } from '@/lib/LanguageContext';
-import { t, tr } from '@/lib/translations';
+import { useEffect, useRef } from 'react';
 
-const metrics = [
-  { label: 'Tareas manuales', val: '−70%', pct: 70, color: '#f87171', grad: 'linear-gradient(90deg,#1a3a5c,#f87171)' },
-  { label: 'Turnos perdidos', val: '−85%', pct: 85, color: '#00e5a0', grad: 'linear-gradient(90deg,#0f3a2a,#00e5a0)' },
-  { label: 'Respuesta a clientes', val: '24/7', pct: 100, color: '#00c4ff', grad: 'linear-gradient(90deg,#0f2a3a,#00c4ff)' },
-  { label: 'Satisfacción del equipo', val: '+90%', pct: 90, color: '#00e5a0', grad: 'linear-gradient(90deg,#0f3a2a,#00e5a0)' },
+const cells = [
+  {
+    wide: true,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="24" height="24">
+        <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+      </svg>
+    ),
+    title: 'Cada minuto que tu equipo no pasa al teléfono, lo pasa con la gente',
+    desc: 'Automatizamos lo repetitivo para que tu secretaría atienda mejor lo que de verdad importa. La IA no reemplaza el trato humano — lo libera.',
+    big: null,
+  },
+  {
+    wide: false,
+    icon: null,
+    title: 'Siempre disponible',
+    desc: 'Tus clientes agendan cuando pueden, no cuando vos abrís.',
+    big: '24/7',
+  },
+  {
+    wide: false,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="24" height="24">
+        <path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-6"/>
+      </svg>
+    ),
+    title: 'Panel y dashboard',
+    desc: 'Toda la operación y tus datos, en una pantalla clara para tu equipo.',
+    big: null,
+  },
+  {
+    wide: true,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="24" height="24">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+    ),
+    title: 'Sin tecnicismos, sin proyectos eternos',
+    desc: 'Hablamos tu idioma, no el de los ingenieros. Implementamos rápido, te acompañamos y ajustamos sobre la marcha. En días, no en meses.',
+    big: null,
+  },
 ];
 
-const puntos = ['punto1', 'punto2', 'punto3', 'punto4'] as const;
-
 export default function Nosotros() {
-  const { lang } = useLanguage();
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const els = el.querySelectorAll<HTMLElement>('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('in')); return; }
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }),
+      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+    );
+    els.forEach(e => io.observe(e));
+    const fb = setTimeout(() => els.forEach(e => e.classList.add('in')), 1600);
+    return () => { io.disconnect(); clearTimeout(fb); };
+  }, []);
 
   return (
-    <section id="nosotros" className="py-20" style={{ background: '#0a1020' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          {/* Left */}
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-5 h-px" style={{ background: '#00e5a0' }} />
-              <span className="text-xs font-700 uppercase tracking-widest" style={{ color: '#00e5a0', fontWeight: 700, letterSpacing: '0.15em' }}>¿Por qué elegirnos?</span>
-            </div>
-            <h2 className="mb-5" style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: 'clamp(32px,4vw,44px)', textTransform: 'uppercase', letterSpacing: '-1px', color: '#eef4ff', lineHeight: 1 }}>
-              {tr(t.nosotros.titulo, lang)}
-            </h2>
-            <p className="text-sm leading-relaxed mb-7" style={{ color: 'rgba(238,244,255,0.7)', fontWeight: 300 }}>
-              {tr(t.nosotros.parrafo, lang)}
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {puntos.map((p) => (
-                <div key={p} className="flex items-center gap-2.5 px-4 py-3 rounded-lg"
-                  style={{ background: 'rgba(0,229,160,0.05)', border: '1px solid rgba(0,229,160,0.1)' }}>
-                  <span style={{ color: '#00e5a0', fontSize: 14, flexShrink: 0 }}>✓</span>
-                  <span className="text-sm" style={{ color: 'rgba(238,244,255,0.8)', fontWeight: 400 }}>{tr(t.nosotros[p], lang)}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+    <section id="nosotros" ref={ref as React.RefObject<HTMLDivElement>} style={{ padding: '104px 0', background: 'var(--cream)' }}>
+      <div className="max-w-[1200px] mx-auto px-7">
+        <div className="text-center reveal" style={{ marginBottom: 56 }}>
+          <p className="flex items-center justify-center gap-2" style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--violet-deep)', fontWeight: 600, marginBottom: 18 }}>
+            <span style={{ width: 22, height: 2, borderRadius: 2, background: 'var(--grad)', display: 'inline-block' }} />
+            Por qué BetterFlowIA
+          </p>
+          <h2 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 900, fontSize: 'clamp(38px,5vw,64px)', letterSpacing: '-0.01em', lineHeight: 0.94, textTransform: 'uppercase', color: 'var(--ink)' }}>
+            Tecnología que se siente humana
+          </h2>
+        </div>
 
-          {/* Right — metrics panel */}
-          <div className="rounded-2xl p-7" style={{ background: '#060b18', border: '1px solid rgba(0,229,160,0.1)' }}>
-            <div className="text-xs uppercase tracking-widest mb-5" style={{ color: 'rgba(238,244,255,0.35)', letterSpacing: '0.15em' }}>
-              Impacto típico en clientes
-            </div>
-            <div className="flex flex-col gap-5">
-              {metrics.map((m) => (
-                <div key={m.label} className="flex items-center gap-3">
-                  <div className="text-xs w-36 flex-shrink-0" style={{ color: 'rgba(238,244,255,0.4)' }}>{m.label}</div>
-                  <div className="flex-1 h-0.5 rounded-full overflow-hidden" style={{ background: 'rgba(238,244,255,0.06)' }}>
-                    <div className="h-full rounded-full" style={{ width: `${m.pct}%`, background: m.grad }} />
-                  </div>
-                  <div className="text-xs font-700 w-10 text-right" style={{ color: m.color, fontWeight: 700 }}>{m.val}</div>
+        {/* Bento grid */}
+        <div
+          className="grid gap-5"
+          style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}
+        >
+          {cells.map((c, i) => (
+            <div
+              key={i}
+              className="reveal"
+              style={{
+                gridColumn: c.wide ? 'span 2' : undefined,
+                background: '#fff',
+                border: '1px solid var(--line)',
+                borderRadius: 'var(--radius-lg)',
+                padding: 30,
+                boxShadow: 'var(--shadow-sm)',
+                transitionDelay: `${i * 0.08}s`,
+              }}
+            >
+              {c.big ? (
+                <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 900, fontSize: 58, lineHeight: 1, background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: 12 }}>
+                  {c.big}
                 </div>
-              ))}
+              ) : c.icon ? (
+                <div className="flex items-center justify-center" style={{ width: 46, height: 46, borderRadius: 12, background: 'var(--cream-2)', color: 'var(--violet-deep)', marginBottom: 16 }}>
+                  {c.icon}
+                </div>
+              ) : null}
+              <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 900, fontSize: 22, textTransform: 'none', letterSpacing: 0, color: 'var(--ink)', marginBottom: 8, lineHeight: 1.2 }}>
+                {c.title}
+              </h3>
+              <p style={{ margin: 0, fontSize: 15, color: 'var(--ink-soft)', lineHeight: 1.55 }}>{c.desc}</p>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

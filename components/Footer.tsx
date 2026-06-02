@@ -1,92 +1,131 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
-import { useLanguage } from '@/lib/LanguageContext';
-import { t, tr } from '@/lib/translations';
+import FlowLoopIcon from './FlowLoopIcon';
+
+const WHATSAPP_URL = 'https://wa.me/541165115261';
 
 export default function Footer() {
-  const { lang } = useLanguage();
-
-  const links = [
-    { label: tr(t.footer.inicio, lang), href: '/' },
-    { label: tr(t.footer.servicios, lang), href: '/#servicios' },
-    { label: tr(t.footer.productos, lang), href: '/productos' },
-    { label: tr(t.footer.contacto, lang), href: 'https://wa.me/541165115261', external: true },
-  ];
-
   return (
-    <footer
-      style={{ background: '#0a1020', borderTop: '1px solid rgba(0,229,160,0.08)' }}
-      className="py-8"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-
-          {/* Logo with real image */}
-          <div className="flex items-center gap-2.5">
-            <Image
-              src="/logo.jpeg"
-              alt="BetterFlowIA"
-              width={32}
-              height={32}
-              className="rounded-full"
-              style={{ objectFit: 'cover' }}
-            />
-            <span style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
-              fontWeight: 900,
-              fontSize: 17,
-              textTransform: 'uppercase',
-              color: '#eef4ff',
-              letterSpacing: '-0.3px',
-            }}>
-              BetterFlow
-              <sup style={{ fontSize: 8, color: '#00e5a0', fontFamily: 'Barlow, sans-serif', fontWeight: 600, letterSpacing: '1px' }}>
-                IA
-              </sup>
-            </span>
+    <footer id="blog" style={{ background: 'var(--navy-900)', color: '#AEB6C8', padding: '72px 0 40px' }}>
+      <div className="max-w-[1200px] mx-auto px-7">
+        <div
+          className="grid gap-10"
+          style={{ gridTemplateColumns: '1.6fr 1fr 1fr 1fr' }}
+        >
+          {/* Brand col */}
+          <div>
+            <div className="flex items-center gap-3" style={{ marginBottom: 16 }}>
+              <FlowLoopIcon size={36} />
+              <span style={{
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontWeight: 900,
+                fontSize: 22,
+                letterSpacing: '-0.01em',
+                color: '#fff',
+                lineHeight: 1,
+                display: 'inline-flex',
+                alignItems: 'flex-start',
+              }}>
+                BetterFlow
+                <sup style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 10, fontWeight: 600, color: 'var(--violet-bright)', marginLeft: 3, marginTop: 2 }}>
+                  IA
+                </sup>
+              </span>
+            </div>
+            <p style={{ fontSize: 14.5, maxWidth: '34ch', margin: 0, color: '#AEB6C8', lineHeight: 1.55 }}>
+              Automatización e inteligencia artificial para empresas argentinas. Flujos de valor inteligentes.
+            </p>
           </div>
 
-          {/* Nav links */}
-          <nav className="flex flex-wrap justify-center gap-6">
-            {links.map((l) =>
-              l.external ? (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs transition-colors"
-                  style={{ color: 'rgba(238,244,255,0.4)' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#00e5a0')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(238,244,255,0.4)')}
-                >
-                  {l.label}
-                </a>
-              ) : (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  className="text-xs transition-colors"
-                  style={{ color: 'rgba(238,244,255,0.4)' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#00e5a0')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(238,244,255,0.4)')}
-                >
-                  {l.label}
-                </Link>
-              )
-            )}
-          </nav>
+          {/* Producto */}
+          <div>
+            <h4 style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#717C92', margin: '0 0 16px', fontWeight: 600 }}>
+              Producto
+            </h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 11 }}>
+              {[
+                { label: 'FlowMed', href: '/productos#flowmed' },
+                { label: 'FlowSport', href: '/productos#flowsport' },
+                { label: 'Cómo funciona', href: '/#como' },
+              ].map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} style={{ fontSize: 15, color: '#AEB6C8', transition: 'color .15s' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                    onMouseLeave={e => (e.currentTarget.style.color = '#AEB6C8')}
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Empresa */}
+          <div>
+            <h4 style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#717C92', margin: '0 0 16px', fontWeight: 600 }}>
+              Empresa
+            </h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 11 }}>
+              {[
+                { label: 'Nosotros', href: '/#nosotros' },
+                { label: 'Blog', href: '/#blog' },
+                { label: 'Contacto', href: WHATSAPP_URL, external: true },
+              ].map((l) => (
+                <li key={l.label}>
+                  {l.external ? (
+                    <a href={l.href} target="_blank" rel="noopener noreferrer"
+                      style={{ fontSize: 15, color: '#AEB6C8', transition: 'color .15s' }}
+                      onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                      onMouseLeave={e => (e.currentTarget.style.color = '#AEB6C8')}
+                    >
+                      {l.label}
+                    </a>
+                  ) : (
+                    <Link href={l.href} style={{ fontSize: 15, color: '#AEB6C8', transition: 'color .15s' }}
+                      onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                      onMouseLeave={e => (e.currentTarget.style.color = '#AEB6C8')}
+                    >
+                      {l.label}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Hablemos */}
+          <div>
+            <h4 style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#717C92', margin: '0 0 16px', fontWeight: 600 }}>
+              Hablemos
+            </h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 11 }}>
+              {[
+                { label: 'WhatsApp', href: WHATSAPP_URL },
+                { label: 'hola@betterflowia.com', href: 'mailto:hola@betterflowia.com' },
+                { label: 'Instagram', href: '#' },
+              ].map((l) => (
+                <li key={l.label}>
+                  <a href={l.href} target="_blank" rel="noopener noreferrer"
+                    style={{ fontSize: 15, color: '#AEB6C8', transition: 'color .15s' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                    onMouseLeave={e => (e.currentTarget.style.color = '#AEB6C8')}
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
+        {/* Bottom */}
         <div
-          className="mt-6 pt-5 text-center"
-          style={{ borderTop: '1px solid rgba(238,244,255,0.05)' }}
+          className="flex flex-wrap justify-between items-center gap-3"
+          style={{ marginTop: 56, paddingTop: 28, borderTop: '1px solid rgba(255,255,255,.08)', fontSize: 13.5, color: '#717C92' }}
         >
-          <p className="text-xs" style={{ color: 'rgba(238,244,255,0.2)' }}>
-            {tr(t.footer.rights, lang)}
-          </p>
+          <span>© 2026 BetterFlowIA · Hecho en Argentina 🇦🇷</span>
+          <span>Términos · Privacidad</span>
         </div>
       </div>
     </footer>

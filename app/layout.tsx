@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Barlow, Barlow_Condensed } from "next/font/google";
+import { Barlow, Barlow_Condensed, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/LanguageContext";
 import Header from "@/components/Header";
@@ -8,15 +8,22 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 
 const barlow = Barlow({
   subsets: ["latin"],
-  weight: ["300", "400", "600", "700", "800", "900"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-barlow",
   display: "swap",
 });
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
-  weight: ["700", "800", "900"],
+  weight: ["500", "700", "800", "900"],
   variable: "--font-barlow-condensed",
+  display: "swap",
+});
+
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -91,8 +98,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" className={`${barlow.variable} ${barlowCondensed.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-[#060b18]">
+    <html lang="es" className={`${barlow.variable} ${barlowCondensed.variable} ${jetBrainsMono.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col">
         <LanguageProvider>
           <Header />
           <main className="flex-1">{children}</main>
