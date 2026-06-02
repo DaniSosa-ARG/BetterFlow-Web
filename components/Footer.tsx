@@ -17,7 +17,7 @@ export default function Footer() {
 
   return (
     <footer
-      style={{ background: '#0d0a1a', borderTop: '1px solid rgba(168,85,247,0.08)' }}
+      style={{ background: '#0a1020', borderTop: '1px solid rgba(0,229,160,0.08)' }}
       className="py-8"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,11 +38,11 @@ export default function Footer() {
               fontWeight: 900,
               fontSize: 17,
               textTransform: 'uppercase',
-              color: '#f3e8ff',
+              color: '#eef4ff',
               letterSpacing: '-0.3px',
             }}>
               BetterFlow
-              <sup style={{ fontSize: 8, color: '#a855f7', fontFamily: 'Barlow, sans-serif', fontWeight: 600, letterSpacing: '1px' }}>
+              <sup style={{ fontSize: 8, color: '#00e5a0', fontFamily: 'Barlow, sans-serif', fontWeight: 600, letterSpacing: '1px' }}>
                 IA
               </sup>
             </span>
@@ -58,9 +58,9 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-xs transition-colors"
-                  style={{ color: 'rgba(243,232,255,0.4)' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#a855f7')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(243,232,255,0.4)')}
+                  style={{ color: 'rgba(238,244,255,0.4)' }}
+                  onMouseEnter={e => (e.currentTarget.style.color = '#00e5a0')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(238,244,255,0.4)')}
                 >
                   {l.label}
                 </a>
@@ -69,9 +69,9 @@ export default function Footer() {
                   key={l.href}
                   href={l.href}
                   className="text-xs transition-colors"
-                  style={{ color: 'rgba(243,232,255,0.4)' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#a855f7')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(243,232,255,0.4)')}
+                  style={{ color: 'rgba(238,244,255,0.4)' }}
+                  onMouseEnter={e => (e.currentTarget.style.color = '#00e5a0')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(238,244,255,0.4)')}
                 >
                   {l.label}
                 </Link>
@@ -82,9 +82,9 @@ export default function Footer() {
 
         <div
           className="mt-6 pt-5 text-center"
-          style={{ borderTop: '1px solid rgba(243,232,255,0.05)' }}
+          style={{ borderTop: '1px solid rgba(238,244,255,0.05)' }}
         >
-          <p className="text-xs" style={{ color: 'rgba(243,232,255,0.2)' }}>
+          <p className="text-xs" style={{ color: 'rgba(238,244,255,0.2)' }}>
             {tr(t.footer.rights, lang)}
           </p>
         </div>

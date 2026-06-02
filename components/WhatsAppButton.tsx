@@ -20,11 +20,11 @@ export default function WhatsAppButton() {
     >
       <span className="text-xs font-600 px-3 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap"
         style={{
-          background: '#7c3aed', color: '#f3e8ff', fontWeight: 600,
+          background: '#00e5a0', color: '#060b18', fontWeight: 600,
           opacity: hovered ? 1 : 0,
           transform: hovered ? 'translateX(0)' : 'translateX(8px)',
           pointerEvents: 'none',
-          boxShadow: '0 4px 16px rgba(168,85,247,0.4)',
+          boxShadow: '0 4px 16px rgba(0,229,160,0.4)',
         }}>
         {tr(t.whatsapp.tooltip, lang)}
       </span>

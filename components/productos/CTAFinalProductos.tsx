@@ -10,24 +10,24 @@ export default function CTAFinalProductos() {
     <section className="relative py-24 text-center overflow-hidden" style={{ background: '#060b18' }}>
       {/* Glow */}
       <div className="absolute inset-0 pointer-events-none" style={{
-        background: 'radial-gradient(ellipse 60% 60% at 50% 50%, rgba(168,85,247,0.08) 0%, transparent 65%)',
+        background: 'radial-gradient(ellipse 60% 60% at 50% 50%, rgba(0,229,160,0.08) 0%, transparent 65%)',
       }} />
       {/* Enso */}
       <svg className="absolute pointer-events-none" style={{ left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 500, height: 500, opacity: 0.04 }} viewBox="0 0 500 500" fill="none">
-        <circle cx="250" cy="250" r="195" stroke="#a855f7" strokeWidth="26" strokeDasharray="980 265" strokeLinecap="round" />
-        <circle cx="250" cy="250" r="144" stroke="#a855f7" strokeWidth="10" strokeDasharray="670 195" strokeLinecap="round" transform="rotate(20 250 250)" />
+        <circle cx="250" cy="250" r="195" stroke="#00e5a0" strokeWidth="26" strokeDasharray="980 265" strokeLinecap="round" />
+        <circle cx="250" cy="250" r="144" stroke="#00e5a0" strokeWidth="10" strokeDasharray="670 195" strokeLinecap="round" transform="rotate(20 250 250)" />
       </svg>
 
       <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="mb-4 leading-none" style={{
           fontFamily: "'Barlow Condensed',sans-serif",
           fontWeight: 900, fontSize: 'clamp(36px,5vw,52px)',
-          textTransform: 'uppercase', letterSpacing: '-1.5px', color: '#f3e8ff',
+          textTransform: 'uppercase', letterSpacing: '-1.5px', color: '#eef4ff',
         }}>
           {tr(t.ctaFinalProductos.titulo, lang).replace('.', '')}
-          <span style={{ background: 'linear-gradient(90deg,#a855f7,#e879f9)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>.</span>
+          <span style={{ background: 'linear-gradient(90deg,#00e5a0,#00c4ff)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>.</span>
         </h2>
-        <p className="text-sm mb-9" style={{ color: 'rgba(243,232,255,0.4)', fontWeight: 300 }}>
+        <p className="text-sm mb-9" style={{ color: 'rgba(238,244,255,0.4)', fontWeight: 300 }}>
           Sin contratos. Sin setup. Primer mes gratis.
         </p>
         <a href="https://wa.me/541165115261" target="_blank" rel="noopener noreferrer"

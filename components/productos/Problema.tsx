@@ -37,14 +37,14 @@ export default function Problema() {
   const { lang } = useLanguage();
 
   return (
-    <section className="py-20" style={{ background: '#0d0a1a' }}>
+    <section className="py-20" style={{ background: '#0a1020' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-11">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-5 h-px" style={{ background: '#f87171' }} />
             <span className="text-xs font-700 uppercase tracking-widest" style={{ color: '#f87171', fontWeight: 700, letterSpacing: '0.15em' }}>El problema</span>
           </div>
-          <h2 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: 'clamp(32px,4vw,46px)', textTransform: 'uppercase', letterSpacing: '-1px', color: '#f3e8ff' }}>
+          <h2 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: 'clamp(32px,4vw,46px)', textTransform: 'uppercase', letterSpacing: '-1px', color: '#eef4ff' }}>
             {tr(t.problema.titulo, lang)}
           </h2>
         </div>
@@ -53,18 +53,18 @@ export default function Problema() {
           {cards.map((card) => (
             <div key={card.key}
               className="rounded-xl p-7 transition-all duration-250 group"
-              style={{ background: '#0a0718', border: '1px solid rgba(248,113,113,0.12)' }}
-              onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(248,113,113,0.35)'; (e.currentTarget as HTMLDivElement).style.background = '#130e24'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(248,113,113,0.12)'; (e.currentTarget as HTMLDivElement).style.background = '#0a0718'; }}
+              style={{ background: '#0e1628', border: '1px solid rgba(248,113,113,0.12)' }}
+              onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(248,113,113,0.35)'; (e.currentTarget as HTMLDivElement).style.background = '#162040'; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(248,113,113,0.12)'; (e.currentTarget as HTMLDivElement).style.background = '#0e1628'; }}
             >
               <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
                 style={{ background: 'rgba(248,113,113,0.08)', border: '1px solid rgba(248,113,113,0.18)' }}>
                 {card.icon}
               </div>
-              <h3 className="text-base font-800 mb-3" style={{ color: '#f3e8ff', fontWeight: 800 }}>
+              <h3 className="text-base font-800 mb-3" style={{ color: '#eef4ff', fontWeight: 800 }}>
                 {tr(t.problema[card.key], lang)}
               </h3>
-              <p className="text-sm leading-relaxed" style={{ color: 'rgba(243,232,255,0.45)', fontWeight: 300 }}>
+              <p className="text-sm leading-relaxed" style={{ color: 'rgba(238,244,255,0.45)', fontWeight: 300 }}>
                 {tr(t.problema[`${card.key}Desc` as 'card1Desc' | 'card2Desc' | 'card3Desc'], lang)}
               </p>
             </div>

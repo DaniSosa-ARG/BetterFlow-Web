@@ -33,15 +33,15 @@ export default function Precios() {
   ];
 
   return (
-    <section id="precios" className="py-20" style={{ background: '#0d0a1a' }}>
+    <section id="precios" className="py-20" style={{ background: '#0a1020' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-11 text-center">
           <div className="flex items-center justify-center gap-2 mb-3">
-            <div className="w-5 h-px" style={{ background: '#a855f7' }} />
-            <span className="text-xs font-700 uppercase tracking-widest" style={{ color: '#a855f7', fontWeight: 700, letterSpacing: '0.15em' }}>Precios</span>
-            <div className="w-5 h-px" style={{ background: '#a855f7' }} />
+            <div className="w-5 h-px" style={{ background: '#00e5a0' }} />
+            <span className="text-xs font-700 uppercase tracking-widest" style={{ color: '#00e5a0', fontWeight: 700, letterSpacing: '0.15em' }}>Precios</span>
+            <div className="w-5 h-px" style={{ background: '#00e5a0' }} />
           </div>
-          <h2 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: 'clamp(32px,4vw,46px)', textTransform: 'uppercase', letterSpacing: '-1px', color: '#f3e8ff' }}>
+          <h2 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: 'clamp(32px,4vw,46px)', textTransform: 'uppercase', letterSpacing: '-1px', color: '#eef4ff' }}>
             {tr(t.precios.titulo, lang)}
           </h2>
         </div>
@@ -50,16 +50,16 @@ export default function Precios() {
           {plans.map((plan, i) => (
             <div key={i} className="relative rounded-xl p-7 flex flex-col gap-5 transition-all duration-200"
               style={{
-                background: plan.popular ? 'linear-gradient(160deg,#0a0718,#130e24)' : '#0a0718',
-                border: plan.popular ? '1.5px solid rgba(168,85,247,0.4)' : '1px solid rgba(243,232,255,0.07)',
+                background: plan.popular ? 'linear-gradient(160deg,#0e1628,#162040)' : '#0e1628',
+                border: plan.popular ? '1.5px solid rgba(0,229,160,0.4)' : '1px solid rgba(238,244,255,0.07)',
                 transform: plan.popular ? 'scale(1.03)' : undefined,
-                boxShadow: plan.popular ? '0 0 40px rgba(168,85,247,0.08)' : undefined,
+                boxShadow: plan.popular ? '0 0 40px rgba(0,229,160,0.08)' : undefined,
               }}
             >
               {/* Popular badge */}
               {plan.popular && (
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded text-xs font-700 uppercase tracking-wider"
-                  style={{ background: 'linear-gradient(135deg,#7c3aed,#a855f7)', color: '#fff', fontWeight: 800 }}>
+                  style={{ background: '#00e5a0', color: '#060b18', fontWeight: 800 }}>
                   {tr(t.precios.popular, lang)}
                 </div>
               )}
@@ -67,27 +67,27 @@ export default function Precios() {
               {/* Title + Price */}
               <div>
                 <div className="text-xs font-700 uppercase tracking-widest mb-2"
-                  style={{ color: plan.popular ? '#a855f7' : 'rgba(243,232,255,0.4)', fontWeight: 700 }}>
+                  style={{ color: plan.popular ? '#00e5a0' : 'rgba(238,244,255,0.4)', fontWeight: 700 }}>
                   {plan.title}
                 </div>
                 <div className="flex items-end gap-1">
-                  <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: 40, color: '#f3e8ff', letterSpacing: '-1px', lineHeight: 1 }}>
+                  <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: 40, color: '#eef4ff', letterSpacing: '-1px', lineHeight: 1 }}>
                     {plan.price}
                   </span>
-                  <span className="text-xs mb-1" style={{ color: 'rgba(243,232,255,0.4)' }}>
+                  <span className="text-xs mb-1" style={{ color: 'rgba(238,244,255,0.4)' }}>
                     {tr(t.precios.mes, lang)}
                   </span>
                 </div>
               </div>
 
               {/* Divider */}
-              <div className="h-px" style={{ background: plan.popular ? 'rgba(168,85,247,0.2)' : 'rgba(243,232,255,0.06)' }} />
+              <div className="h-px" style={{ background: plan.popular ? 'rgba(0,229,160,0.2)' : 'rgba(238,244,255,0.06)' }} />
 
               {/* Features */}
               <ul className="flex flex-col gap-3 flex-1">
                 {plan.features.map((feat, j) => (
-                  <li key={j} className="flex items-start gap-2.5 text-sm" style={{ color: 'rgba(243,232,255,0.7)', fontWeight: 300 }}>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={plan.popular ? '#a855f7' : 'rgba(243,232,255,0.35)'} strokeWidth="2.5" className="mt-0.5 flex-shrink-0">
+                  <li key={j} className="flex items-start gap-2.5 text-sm" style={{ color: 'rgba(238,244,255,0.7)', fontWeight: 300 }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={plan.popular ? '#00e5a0' : 'rgba(238,244,255,0.35)'} strokeWidth="2.5" className="mt-0.5 flex-shrink-0">
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                     {feat}
@@ -100,8 +100,8 @@ export default function Precios() {
                 className="block text-center py-3 px-6 rounded text-sm font-800 transition-all"
                 style={
                   plan.popular
-                    ? { background: 'linear-gradient(135deg,#7c3aed,#a855f7)', color: '#fff', fontWeight: 800, boxShadow: '0 6px 20px rgba(168,85,247,0.3)' }
-                    : { background: 'transparent', color: 'rgba(243,232,255,0.6)', border: '1px solid rgba(243,232,255,0.12)', fontWeight: 600 }
+                    ? { background: '#00e5a0', color: '#060b18', fontWeight: 800, boxShadow: '0 6px 20px rgba(0,229,160,0.3)' }
+                    : { background: 'transparent', color: 'rgba(238,244,255,0.6)', border: '1px solid rgba(238,244,255,0.12)', fontWeight: 600 }
                 }
                 onMouseEnter={e => { e.currentTarget.style.opacity = '0.85'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
                 onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = ''; }}
