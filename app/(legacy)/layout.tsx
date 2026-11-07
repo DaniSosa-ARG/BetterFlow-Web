@@ -27,6 +27,8 @@ const jetBrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+import { isProductionIndexable } from "@/modules/home/config/site";
+
 const BASE_URL = "https://betterflowia.com";
 
 export const metadata: Metadata = {
@@ -88,9 +90,9 @@ export const metadata: Metadata = {
     canonical: BASE_URL,
   },
   robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true },
+    index: isProductionIndexable(),
+    follow: isProductionIndexable(),
+    googleBot: { index: isProductionIndexable(), follow: isProductionIndexable() },
   },
 };
 

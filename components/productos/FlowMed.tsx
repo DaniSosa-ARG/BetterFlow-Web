@@ -3,7 +3,7 @@
 import { useLanguage } from '@/lib/LanguageContext';
 import { t, tr } from '@/lib/translations';
 
-const WHATSAPP_FLOWMED = 'https://wa.me/541165115261?text=Hola,%20quiero%20saber%20mas%20sobre%20FlowMed';
+const WHATSAPP_FLOWMED = 'https://wa.me/541164791603?text=Hola,%20quiero%20saber%20mas%20sobre%20FlowMed';
 
 export default function FlowMed() {
   const { lang } = useLanguage();

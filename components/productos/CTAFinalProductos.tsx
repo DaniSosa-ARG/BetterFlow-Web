@@ -30,7 +30,7 @@ export default function CTAFinalProductos() {
         <p className="text-sm mb-9" style={{ color: 'rgba(238,244,255,0.4)', fontWeight: 300 }}>
           Sin contratos. Sin setup. Primer mes gratis.
         </p>
-        <a href="https://wa.me/541165115261" target="_blank" rel="noopener noreferrer"
+        <a href="https://wa.me/541164791603" target="_blank" rel="noopener noreferrer"
           className="inline-flex items-center gap-3 px-9 py-4 rounded font-800 text-base transition-all"
           style={{
             background: '#25D366', color: '#ffffff', fontWeight: 800,

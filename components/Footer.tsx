@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import FlowLoopIcon from './FlowLoopIcon';
 
-const WHATSAPP_URL = 'https://wa.me/541165115261';
+const WHATSAPP_URL = 'https://wa.me/541164791603';
 
 export default function Footer() {
   return (

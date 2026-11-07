@@ -1,10 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { useLanguage } from '@/lib/LanguageContext';
 import { useEffect, useRef } from 'react';
 
-const WHATSAPP_URL = 'https://wa.me/541165115261';
+const WHATSAPP_URL = 'https://wa.me/541164791603';
 
 function useReveal() {
   const ref = useRef<HTMLElement>(null);
@@ -28,7 +27,6 @@ function useReveal() {
 }
 
 export default function Hero() {
-  const { lang } = useLanguage();
   const sectionRef = useReveal() as React.RefObject<HTMLElement>;
 
   return (

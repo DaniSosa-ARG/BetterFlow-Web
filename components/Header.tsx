@@ -5,7 +5,7 @@ import Link from 'next/link';
 import FlowLoopIcon from './FlowLoopIcon';
 import { useLanguage } from '@/lib/LanguageContext';
 
-const WHATSAPP_URL = 'https://wa.me/541165115261';
+const WHATSAPP_URL = 'https://wa.me/541164791603';
 
 const navLinks = [
   { label: 'Cómo funciona', href: '/#como' },

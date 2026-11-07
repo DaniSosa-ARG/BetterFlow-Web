@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 
-const WHATSAPP_URL = 'https://wa.me/541165115261';
+const WHATSAPP_URL = 'https://wa.me/541164791603';
 
 export default function CTAFinal() {
   const ref = useRef<HTMLElement>(null);

@@ -3,7 +3,7 @@
 import { useLanguage } from '@/lib/LanguageContext';
 import { t, tr } from '@/lib/translations';
 
-const WHATSAPP_URL = 'https://wa.me/541165115261';
+const WHATSAPP_URL = 'https://wa.me/541164791603';
 
 export default function Precios() {
   const { lang } = useLanguage();
